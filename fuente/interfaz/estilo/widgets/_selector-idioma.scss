@@ -1,0 +1,25 @@
+@import '../imports/variables';
+@import '../imports/prefijos';
+
+.selectorIdioma {
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.2em;
+	@include transform-origin(100% 0);
+	@include rotate(-90deg);
+	.idiomas {
+		@include translate(0,-100%);	// Después del rotate -90deg esto mueve a la izquierda
+		padding: 10px;
+		.idioma {
+			text-align: right;
+			.enlace {
+				&.activo {
+					font-weight: bold;
+					color: $color-gris;
+				}
+			}
+		}
+	}
+}

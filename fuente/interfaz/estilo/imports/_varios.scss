@@ -1,0 +1,82 @@
+.color-uno {
+	color: $color-uno
+}
+
+.color-dos {
+	color: $color-dos
+}
+
+.color-tres {
+	color: $color-tres
+}
+
+.color-cuatro {
+	color: $color-cuatro
+}
+
+.fondo-uno {
+	background-color: $color-uno
+}
+
+.fondo-dos {
+	background-color: $color-dos
+}
+
+.fondo-tres {
+	background-color: $color-tres
+}
+
+.fondo-cuatro {
+	background-color: $color-cuatro
+}
+
+.color-gris {
+	color: $color-gris;
+}
+
+.color-gris-claro {
+	color: $color-gris-claro;
+}
+
+.color-gris-oscuro {
+	color: $color-gris-oscuro;
+}
+
+.fondo-gris {
+	background-color: $color-gris;
+}
+
+.fondo-gris-claro {
+	background-color: $color-gris-claro;
+}
+
+.fondo-gris-oscuro {
+	background-color: $color-gris-oscuro;
+}
+
+.flota-derecha {
+	float: right;
+}
+
+.flota-izquierda {
+	float: left;
+}
+
+.texto-centro {
+	text-align: center;
+}
+
+.texto-derecha {
+	text-align: right;
+}
+
+.oculto,
+.plantilla {
+	display: none !important;
+}
+
+.bloque-centrado {
+	display: block !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}

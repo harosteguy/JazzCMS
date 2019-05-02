@@ -1,0 +1,26 @@
+@import '../imports/variables';
+
+#usuario {
+	padding: 5px 1em;
+	height: 50px;
+	.desconectado {
+		margin-top: 10px;
+	}
+	.usuario {
+		display: inline-block;
+		.foto {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 2px solid $color-gris-claro;
+		}
+	}
+	.menu {
+		display: inline-block;
+		.item {
+			font-size: 1.2em;
+			display: inline-block;
+			margin-left: 1em;
+		}
+	}
+}

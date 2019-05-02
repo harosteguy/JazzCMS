@@ -1,0 +1,50 @@
+@import '../imports/variables';
+
+.widgetContacto {
+	.colLogo {
+		text-align: center;
+		.logo {
+			position: relative;
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			max-width: 160px;
+			padding-top: 64%;
+			svg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	.colItems {
+		text-align: center;
+		.item {
+			display: inline-block;
+			position: relative;
+			padding: 0 0 10px 25px;
+			.ico {
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: $color-uno;
+			}
+			.enlace * {
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-xs-min) {
+	.widgetContacto {
+		.colLogo .logo {
+			//width: 30%;
+		}
+		.colItems {
+			text-align: left;
+		}
+	}
+}

@@ -1,0 +1,23 @@
+<div id="selectorImagenModal">
+	<div class="fondo"></div>
+</div>
+<div id="widgetSelectorImagen" class="plantilla selectorImagen">
+	<span class="titulo"></span>
+	<a class="boton color-cuatro cerrar"><span class="ico">${require('../../iconos/fa/solid/times.svg')}</span></a>
+	<div class="plantilla imagen">
+		<img>
+		<button class="quitar boton"><span class="ico">${require('../../iconos/fa/solid/times.svg')}</span></button>
+		<div class="confirmaBorrar oculto">
+			<span class="trompo oculto ico gira">${require('../../iconos/fa/solid/sync-alt.svg')}</span>
+			<button class="boton color-cuatro borrar" data-contenido="wmBorrar">&nbsp;</button>
+			<button class="boton color-dos cancelar" data-contenido="wmCancelar">&nbsp;</button>
+		</div>
+	</div>
+	<div class="imagenes">
+		<div class="agregar color-uno">
+			<span class="ico mas">${require('../../iconos/fa/solid/plus.svg')}</span>
+			<span class="ico gira trompo oculto">${require('../../iconos/fa/solid/sync-alt.svg')}</span>
+			<input type="file" class="inputImagen">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+
+.contenedor {
+	display: block;
+	max-width: $contenedor-max-width;
+	margin-right: auto;
+	margin-left: auto;
+	padding:  floor(($grid-gutter-width / 2));
+}
+
+.row {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	margin:  ceil(($grid-gutter-width / -2));
+}
+
+// Estilos comunes para todas las columnas
+$i: 1;
+$list: ".col-df-#{$i}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+@for $i from (1 + 1) through $grid-columns {
+	$list: "#{$list}, .col-df-#{$i}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+}
+#{$list} {
+	position: relative;
+	min-height: 1px;
+	padding:  ceil(($grid-gutter-width / 2));
+	width: 100%;
+}
+
+// Create grid for specific class
+@mixin make-grid($class) {
+	@for $i from 1 through $grid-columns {
+		.col-#{$class}-#{$i} {
+			width: percentage(($i / $grid-columns));
+		}
+	}
+}
+
+//
+@include make-grid(df);
+
+@media (min-width: $screen-xs-min) {
+	@include make-grid(xs);
+}
+
+@media (min-width: $screen-sm-min) {
+	@include make-grid(sm);
+}
+
+@media (min-width: $screen-md-min) {
+	@include make-grid(md);
+}
+
+@media (min-width: $screen-lg-min) {
+	@include make-grid(lg);
+}
+

@@ -1,0 +1,281 @@
+label {
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 0.4em;
+}
+
+button,
+input,
+select,
+textarea {
+	margin: 0;
+	font: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+	cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+input {
+	line-height: normal;
+}
+/*
+input[type="checkbox"],
+input[type="radio"] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+}
+*/
+input[type="radio"][disabled],
+input[type="checkbox"][disabled] {
+	cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"] {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+textarea {
+  overflow: auto;
+  height: auto;
+}
+
+.grupo {
+	position: relative;
+	margin-bottom: 1em;
+	.control {
+		margin-bottom: 0;
+	}		
+	// Ícono dentro del control
+	.icono {
+		position: absolute;
+		top: 0.4em;
+		left: 0.6em;
+		font-size: 1.3em;
+		color: $color-uno;
+	}
+	.icono + .control {
+		padding-left: 3em;
+	}
+}
+
+@media (min-width: $screen-sm-min) {
+	.frm-inline {
+		.grupo {
+			display: inline-block;
+			vertical-align: middle;
+			margin-bottom: 0;
+			margin-right: 1em;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+		.control,
+		.botonera {
+			display: inline-block;
+			vertical-align: middle;
+			width: auto;
+		}
+	}
+}
+
+.control {
+	display: block;
+	width: 100%;
+	margin: $control-margin-top $control-margin-right $control-margin-bottom $control-margin-left;
+
+	padding: $control-padding-top $control-padding-right $control-padding-bottom $control-padding-left;
+	font-size: inherit;
+	line-height: $line-height;
+
+	color: $color-body;
+	background-color: $control-fondo;
+	background-image: none;
+	border: $control-border-width solid $control-border-color;
+	border-radius: $control-radius;
+	outline: 0;
+
+	&,
+	> option {
+
+	}
+
+	&:focus {
+		border-color: $color-uno;
+		outline: 0;
+	}
+	&::-moz-placeholder {
+		color: $color-gris;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder,
+	&::-webkit-input-placeholder {
+		color: $color-gris;
+	}
+	&::-ms-expand {
+		background-color: transparent;
+		border: 0;
+	}
+	&[disabled],
+	&[readonly] {
+		background-color: $color-gris-claro;
+		opacity: 1;
+		cursor: not-allowed;
+	}
+}
+
+// Multiselects
+
+/*
+<div class="multi-select" id="unIdentificador">
+	<div class="grupo desplegable">
+		<select class="control"><option value="0"></option></select><button type="button" class="sel-menos boton">x</button>
+	</div>
+	<button type="button" class="sel-mas boton">+</button>
+</div>
+*/
+
+.multi-select {
+	.grupo {
+		.control {
+			position: relative;
+			top: 0;
+			overflow: visible;
+			display: inline-block;
+			width: auto;
+			margin: 0;
+			//border-top-right-radius: 0;
+			//border-bottom-right-radius: 0;
+			border-right: 2.44em solid transparent;
+			width: 100%;
+			height: 2.44em;
+		}
+		.boton {
+			position: absolute;
+			top: 0;
+			right: 0;
+			overflow: visible;
+			margin: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			height: 2.44em;
+			width: 2.44em;
+			.ico {
+				position: absolute;
+				top: 42%;
+				left: 50%;
+				@include translate(-50%,-50%);
+			}
+		}
+	}
+	.sel-mas {
+		position: relative;
+		width: 2.44em;
+		height: 2.44em;
+		.ico {
+			position: absolute;
+			top: 42%;
+			left: 50%;
+			@include translate(-50%,-50%);
+		}
+	}
+}
+
+/* */
+
+ul.lista-select {
+	background-color: $control-fondo;
+	border: 1px solid $color-gris-claro;
+	height: auto;
+	max-height: 600px;
+	overflow: auto;
+	padding: 0;
+	margin: 0;
+	li {
+		list-style-type: none;
+		padding: 10px 16px;
+		color: $color-gris;
+		cursor: pointer;
+		@include transition(background 0.2s);
+		&:hover {
+			background-color: $color-gris-clarisimo;
+		}
+		&.activo {
+			background-color: $color-uno;
+			color: $color-gris-clarisimo;
+		}
+	}
+}
+
+input[type="checkbox"].control + a.cms-checkbox {
+	position: relative;
+	display: inline-block;
+	margin: $control-margin-top $control-margin-right 0 $control-margin-left;
+	border: $control-border-width solid $control-border-color;
+	border-radius: $control-radius;
+	outline: 0;
+	background-color: $control-fondo;
+	color: $color-gris-claro;
+	width: 2.28em;
+	height: 2.28em;
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+	svg {
+		position: relative;
+		top: 50%;
+		left: 50%;
+		@include translate(-50%,-50%);
+		height: 1.2em;
+		width: auto;
+		fill: $color-gris-claro;
+		&.visto {
+			fill: $color-uno;
+		}
+	}
+	&:focus {
+		border: $control-border-width solid $color-uno;
+	}
+	& + label {
+		display: inline-block;
+		margin-left: 0.6em;
+	}
+}

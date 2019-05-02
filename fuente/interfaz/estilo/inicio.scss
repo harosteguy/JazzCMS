@@ -1,0 +1,87 @@
+@import './imports/comun';
+
+.contenedor {
+	max-width: 1400px;
+}
+
+section header {
+	padding-bottom: $grid-gutter-width / 2;
+	.caja {
+		padding: 1em;
+	}
+}
+
+/* Sección Uno */
+.iniSeccion1Der {
+
+	img {
+		width: 100%;
+	}
+}
+
+/* Widgets de artículos */
+.articulos,
+.categoria-uno,
+.categoria-dos {
+	opacity: 0;
+	@include transition(opacity 0.6s);
+	min-height: 300px;
+	&.visible {
+		opacity: 1;
+	}
+}
+.articulo {
+	.caja {
+		position: relative;
+		padding: 0 0 0.8em;
+		height: 100%;
+		.titulo {
+			margin: 0;
+			padding: 0.6em 0.6em 0.2em;
+		}
+		.imagen {
+			position: relative;
+			display: block;
+			width: 100%;
+			padding-top: 56.25%;
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			.fechaAutor {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: rgba($color-gris-oscuro, 0.5);
+				color: #fff;
+				padding: 0.6em;
+				font-size: 0.9em;
+			}
+		}
+		.entradilla {
+			padding: 1em;
+		}
+		.ver-mas {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding: 0.3em 1em;
+			font-size: 2em;
+		}
+	}
+}
+@media (min-width: $screen-md-min) {
+	.articulo:last-child {
+		display: none;
+	}
+}
+@media (min-width: $screen-lg-min) {
+	.articulo:last-child {
+		display: block;
+	}
+}
+
+/*  */

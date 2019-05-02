@@ -1,0 +1,159 @@
+$color-uno-oscuro: #003c8f !default;
+$color-uno: #1565c0 !default;
+$color-uno-claro: #5e92f3 !default;
+
+$color-dos-oscuro: #374845 !default;
+//$color-dos-oscuro: #255d00 !default;
+$color-dos: #558b2f !default;
+$color-dos-claro: #85bb5c !default;
+
+$color-tres-oscuro: #c56000 !default;
+$color-tres: #ff8f00 !default;
+$color-tres-claro: #fcc500 !default;
+//$color-tres-claro: #ffc046 !default;
+
+$color-cuatro-oscuro: #8e0000 !default;
+$color-cuatro: #c62828 !default;
+$color-cuatro-claro: #ff5f52 !default;
+
+$color-gris-oscurisimo: #263238 !default;
+$color-gris-oscuro: #37474f !default;
+$color-gris: #546e7a !default;
+$color-gris-claro: #d6d6d6 !default;
+$color-gris-clarisimo: #f5f5f5 !default;
+
+$color-body: $color-gris-oscurisimo !default;
+$fondo-body: #ffffff !default;
+//$fondo-body: #fffbf6 !default;
+
+/* Texto */
+
+$font-size-body: 14px;
+//$font-family-uno: "Flamante Semi Slab Medium", Helvetica, Arial, sans-serif;
+$font-family-uno: "Montserrat", Helvetica, Arial, sans-serif !default;
+$font-family-dos: "Open Sans", Helvetica, Arial, sans-serif !default;
+$line-height: 1.4 !default;
+$parrafo-margin: 0 0 0.6em !default;
+$titulos-margin: 0 0 0.6em !default;
+$titulos-weight: 700 !default;
+$h1-size: 2.8em !default;
+$h2-size: 1.9em !default;
+$h3-size: 1.7em !default;
+$h4-size: 1.2em !default;
+$h5-size: 1em !default;
+$h6-size: 0.9em !default;
+
+$hr-width: 1px !default;
+$hr-color: $color-uno !default;
+
+/* Botones */
+
+$boton-padding-top: 0.4em !default;
+$boton-padding-right: 1em !default;
+$boton-padding-bottom: 0.4em !default;
+$boton-padding-left: 1em !default;
+
+$boton-margin-top: 0 !default;
+$boton-margin-right: 0 !default;
+$boton-margin-bottom: 1em !default;
+$boton-margin-left: 0 !default;
+
+$boton-radius: 3px !default;
+$boton-border-width: 1px !default;
+
+$boton-color: $color-gris-oscuro;
+$boton-fondo: $color-gris-clarisimo;
+$boton-fondo-hover: $color-gris-claro;
+$boton-fondo-disabled: $color-gris-claro;
+
+$boton-uno-color: #fff;
+$boton-uno-fondo: $color-uno;
+$boton-uno-fondo-hover: $color-uno-oscuro;
+$boton-uno-fondo-disabled: $color-gris-claro;
+
+$boton-dos-color: #fff;
+$boton-dos-fondo: $color-dos;
+$boton-dos-fondo-hover: $color-dos-oscuro;
+$boton-dos-fondo-disabled: $color-gris-claro;
+
+$boton-tres-color: #fff;
+$boton-tres-fondo: $color-tres;
+$boton-tres-fondo-hover: $color-tres-oscuro;
+$boton-tres-fondo-disabled: $color-gris-claro;
+
+$boton-cuatro-color: #fff;
+$boton-cuatro-fondo: $color-cuatro;
+$boton-cuatro-fondo-hover: $color-cuatro-oscuro;
+$boton-cuatro-fondo-disabled: $color-gris-claro;
+
+/* Formularios */
+
+$control-padding-top: $boton-padding-top;
+$control-padding-right: $boton-padding-right;
+$control-padding-bottom: $boton-padding-bottom;
+$control-padding-left: $boton-padding-left;
+
+$control-margin-top: $boton-margin-top;
+$control-margin-right: $boton-margin-right;
+$control-margin-bottom: $boton-margin-bottom;
+$control-margin-left: $boton-margin-left;
+
+$control-radius: $boton-radius;
+$control-border-width: $boton-border-width;
+$control-border-color: $color-gris-claro;
+$control-fondo: #fff;
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+$screen-xs-min:              480px !default;
+// Small screen / tablet
+$screen-sm-min:              768px !default;
+// Medium screen / desktop
+$screen-md-min:              992px !default;
+// Large screen / wide desktop
+$screen-lg-min:              1200px !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns:              12 !default;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         16px !default;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+//== Container sizes
+
+$contenedor-max-width: 1600px !default;
+
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet:             (720px + $grid-gutter-width) !default;
+//** For `$screen-sm-min` and up.
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            (940px + $grid-gutter-width) !default;
+//** For `$screen-md-min` and up.
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      (1140px + $grid-gutter-width) !default;
+//** For `$screen-lg-min` and up.
+$container-lg:                 $container-large-desktop !default;
+
