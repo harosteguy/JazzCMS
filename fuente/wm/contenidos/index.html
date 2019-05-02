@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JazzCMS</title>
+	<base href="/">
+	<meta name="description" data-contenido="inicioDescription" content="">
+	<link rel="apple-touch-icon" sizes="180x180" href="/interfaz/iconos-app/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/interfaz/iconos-app/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/interfaz/iconos-app/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/interfaz/iconos-app/safari-pinned-tab.svg" color="#a8b7c2">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="msapplication-TileColor" content="#eceff1">
+	<meta name="msapplication-config" content="/browserconfig.xml">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#2277dd">
+</head>
+<body>
+	<noscript>javascript please</noscript>
+	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+	${require('../../interfaz/html/wm-barra-superior.html')}
+	<div class="container-fluid pagina">
+		<div class="row pagina">
+			<div class="col-sm-3 col-md-2 menu-lateral">
+				${require('../../interfaz/html/wm-menu-lateral.html')}
+			</div>
+			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+				<div id="contenidos">
+					<h1 data-contenido="wmContenidos">&nbsp;</h1>
+					<hr>
+					<div class="row">
+						<div class="col-sm-8">
+							<div id="frmContenidos">
+								<input type="hidden" id="idOriginal" value="">
+								<div class="grupo">
+									<label><span data-contenido="wmIdContenido">&nbsp;</span> <small data-contenido="wmHasta30caracter">&nbsp;</small></label>
+									<input type="text" id="idContenido" maxlength="30" class="control" required>
+								</div>
+								<div class="ckEditores">
+									<!--
+									<div class="grupo">
+										<label data-contenido="wmEspanol">&nbsp;</label>
+										<textarea class="control" id="es" rows="6"></textarea>
+									</div>
+									-->
+								</div>
+								<div class="grupo botonera-crud">
+									<button type="button" id="nuevo" class="boton color-uno">
+										<span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+									</button>
+									<button type="button" id="guardar" class="boton color-dos">
+										<span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+									</button>
+									<button type="button" id="eliminar" class="boton color-cuatro">
+										<span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 barra-derecha">
+							<div class="grupo">
+								<label>&nbsp;</label>
+								<ul id="listaContenidos" class="lista-select control"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	${require('../../interfaz/html/confirma-continuar.html')}
+	<div id="confirmaBorrar" class="emergente">
+		<div class="fondo"></div>
+		<div class="ventana">
+			<a href="#" class="cerrar">&#215;</a>
+			<div class="cuerpo">
+				<p data-contenido="wmSeBorraraConte">&nbsp;</p>
+				<br>
+				<div class="grupo">
+					<button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
+					<button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	${require('../../interfaz/html/widgets/wm-selector-imagen.html')}
+	<span class="oculto">
+		<span class="okGuardado" data-contenido="wmOkGuardado"></span>
+		<!-- Widget selector de imágen -->
+		<span class="errorBorrandoImg" data-contenido="wmErrorBorrandoImg"></span>
+		<!-- Plugin de ckEditor ImagenDeCategoria -->
+		<span class="errorSelectorImg" data-contenido="wmErrorSelectorImg"></span>
+		<span class="guardeConteParaImg" data-contenido="wmGuardeConteParaImg"></span>
+	</span>
+</body>
+</html>

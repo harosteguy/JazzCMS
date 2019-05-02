@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+	${require('../interfaz/html/head-comun.html')}
+	<title>&nbsp;</title>
+	<meta name="description" data-contenido="articulosDescription" content="">
+</head>
+<body>
+	<noscript>javascript please</noscript>
+	${require('../interfaz/html/header.html')}
+	${require('../interfaz/html/menu.html')}
+	<main>
+		<div id="contenidos">
+			<div class="contenedor">
+				<div class="row capas">
+					<header class="col-sm-12">
+						<div class="caja cabeza">
+							<h1 id="titulo">&nbsp;</h1>
+						</div>
+					</header>
+					<aside class="aside-top col-xs-12 col-sm-12 col-md-4 col-lg-3">
+						<div class="caja">
+							${require('../interfaz/html/widgets/buscador.html')}
+						</div>
+					</aside>
+					<section class="section-main col-xs-12 col-sm-12 col-md-8 col-lg-9">
+						<article class="articulo col-xs-6 col-sm-4 col-md-6 col-lg-4 plantilla">
+							<div class="caja">
+								<div class="imagen">
+									<a class="enlace" href="#">
+										<figure><img src="/interfaz/img/sin_foto.jpg" srcset="/interfaz/img/sin_foto.jpg" sizes="480px"></figure>
+										<div class="fechaAutor">
+											<span class="ico">${require('../interfaz/iconos/fa/solid/calendar-alt.svg')}</span>&nbsp;<span class="fecha">&nbsp;</span>&nbsp;&nbsp;&nbsp;
+											<span class="ico">${require('../interfaz/iconos/fa/solid/user.svg')}</span>&nbsp;<span class="autor">&nbsp;</span>
+										</div>
+									</a>
+								</div>
+								<a class="enlace" href="#"><h3 class="titulo"></h3></a>
+								<p class="entradilla"></p>
+								<a class="enlace ver-mas" href="#"><span class="ico">${require('../interfaz/iconos/fa/solid/ellipsis-h.svg')}</span></a>
+							</div>
+						</article>
+						<div class="articulos row"></div>
+						<button id="verMas" class="boton color-uno oculto" data-contenido="appVerMasArtis">&nbsp;</button>
+					</section>
+					<aside class="aside-bot col-xs-12 col-sm-12 col-md-4 col-lg-3">
+						<div class="row">
+							<div class="col-sm-6 col-md-12">
+								<div class="caja categorias">
+									${require('../interfaz/html/widgets/categorias-aside.html')}
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-12">
+								<div class="caja ultimos">
+									<h3 data-contenido="appUltimosArtis">&nbsp;</h3><br>
+									${require('../interfaz/html/articulos-aside.html')}
+								</div>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</main>
+	${require('../interfaz/html/footer.html')}
+</body>
+</html>

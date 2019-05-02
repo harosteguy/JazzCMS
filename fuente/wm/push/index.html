@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JazzCMS</title>
+	<base href="/">
+	<meta name="description" data-contenido="inicioDescription" content="">
+	<link rel="apple-touch-icon" sizes="180x180" href="/interfaz/iconos-app/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/interfaz/iconos-app/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/interfaz/iconos-app/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/interfaz/iconos-app/safari-pinned-tab.svg" color="#a8b7c2">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="msapplication-TileColor" content="#eceff1">
+	<meta name="msapplication-config" content="/browserconfig.xml">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#2277dd">
+</head>
+<body>
+	<noscript>javascript please</noscript>
+	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+	${require('../../interfaz/html/wm-barra-superior.html')}
+	<div class="container-fluid pagina">
+		<div class="row pagina">
+			<div class="col-sm-3 col-md-2 menu-lateral">
+				${require('../../interfaz/html/wm-menu-lateral.html')}
+			</div>
+			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+				<div id="contenidos">
+					<h1 data-contenido="wmMsgsPush">&nbsp;</h1>
+					<hr>
+					<div class="row">
+						<div class="col-sm-5">
+							<form id="frmMensaje">
+								<h3 data-contenido="wmMensaje">&nbsp;</h3>
+								<div class="grupo">
+									<label data-contenido="wmTitulo">&nbsp;</label>
+									<input type="text" name="titulo" class="control" maxlength="200" required>
+								</div>
+								<div class="grupo">
+									<label data-contenido="wmMensaje">&nbsp;</label>
+									<textarea name="mensaje" class="control" rows="4" required></textarea>
+								</div>
+								<div class="grupo">
+									<label>URL</label>
+									<input type="url" name="url" class="control" maxlength="200">
+								</div>
+								<div class="grupo">
+									<label data-contenido="wmIcono">&nbsp;</label>
+									<input type="url" name="icono" class="control" maxlength="200" value="" placeholder="https://">
+								</div>
+								<div class="grupo">
+									<label data-contenido="wmEtiqueta">&nbsp;</label>
+									<input type="text" name="etiqueta" class="control" maxlength="40" required value="etiqueta-para-agrupar">
+								</div>
+								<div class="grupo">
+									<br>
+									<button type="button" class="boton color-uno enviar" data-contenido="wmEnviarMsj">&nbsp;</button>
+								</div>
+							</form>
+						</div>
+						<div class="col-sm-7">
+							<form id="frmFiltros">
+								<div class="row">
+									<div class="col-xs-12">
+										<h3 data-contenido="wmSuscriptores">&nbsp;</h3>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">
+										<label data-contenido="wmEspanol">&nbsp;</label>
+									</div>
+									<div class="col-xs-6">
+										<label class="suscrisEs">0</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">
+										<label data-contenido="wmIngles">&nbsp;</label>
+									</div>
+									<div class="col-xs-6">
+										<label class="suscrisEn">0</label>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-6">
+										<label data-contenido="wmIdioma">&nbsp;</label>
+										<select name="idioma" class="control">
+											<option value="es" data-contenido="wmEspanol">&nbsp;</option>
+											<option value="en" data-contenido="wmIngles">&nbsp;</option>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+<!--
+					<div id="suscriptores" class="row">
+						<br><h3 data-contenido="wmSuscriptores">&nbsp;</h3>
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-xs-1"><label>ID</label></div>
+								<div class="col-xs-1"><label data-contenido="wmIdioma">&nbsp;</label></div>
+								<div class="col-xs-2"><label data-contenido="wmFecha">&nbsp;</label></div>
+								<div class="col-xs-2"><label>IP</label></div>
+								<div class="col-xs-6"><label>Endpoint</label></div>
+							</div>
+							<div class="row plantilla">
+								<div class="col-xs-1"><span class="id">&nbsp;</span></div>
+								<div class="col-xs-1"><span class="idioma">&nbsp;</span></div>
+								<div class="col-xs-2"><span class="fecha">&nbsp;</span></div>
+								<div class="col-xs-2"><span class="ip">&nbsp;</span></div>
+								<div class="col-xs-6"><span class="endpoint">&nbsp;</span></div>
+							</div>
+						</div>
+						<div class="col-sm-12 lista"></div>
+					</div>
+-->
+				</div>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

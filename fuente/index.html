@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+	${require('./interfaz/html/head-comun.html')}
+	<title data-contenido="appInicio">&nbsp;</title>
+	<meta name="description" data-contenido="inicioDescription" content="">
+</head>
+<body>
+	<noscript>javascript please</noscript>
+	${require('./interfaz/html/header.html')}
+	${require('./interfaz/html/menu.html')}
+	<main>
+		<div id="contenidos">
+			<section class="contenedor">
+				<div class="row caja">
+					<div class="col-sm-6" data-contenido="appIniSeccion1Izq">&nbsp;</div>
+
+					<div class="col-sm-6 iniSeccion1Der" data-contenido="appIniSeccion1Der">&nbsp;</div>
+
+
+				</div>
+			</section>
+			<article class="articulo col-xs-6 col-sm-6 col-md-4 col-lg-3 plantilla">
+				<div class="caja">
+					<div class="imagen">
+						<a class="enlace" href="#">
+							<figure><img src="/interfaz/img/sin_foto.jpg" srcset="/interfaz/img/sin_foto.jpg" sizes="480px"></figure>
+							<div class="fechaAutor">
+								<span class="ico">${require('./interfaz/iconos/fa/solid/calendar-alt.svg')}</span>&nbsp;<span class="fecha">&nbsp;</span>&nbsp;&nbsp;&nbsp;
+								<span class="ico">${require('./interfaz/iconos/fa/solid/user.svg')}</span>&nbsp;<span class="autor">&nbsp;</span>
+							</div>
+						</a>
+					</div>
+					<a class="enlace" href="#"><h3 class="titulo"></h3></a>
+					<p class="entradilla"></p>
+					<a class="enlace ver-mas" href="#"><span class="ico">${require('./interfaz/iconos/fa/solid/ellipsis-h.svg')}</span></a>
+				</div>
+			</article>
+			<section class="contenedor">
+				<header><div class="caja" data-contenido="appHeadUltimos"></div></header>
+				<div class="articulos row"></div>
+			</section>
+		</div>
+	</main>
+	${require('./interfaz/html/footer.html')}
+</body>
+</html>

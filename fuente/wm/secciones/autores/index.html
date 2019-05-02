@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JazzCMS</title>
+	<base href="/">
+	<meta name="description" data-contenido="inicioDescription" content="">
+	<link rel="apple-touch-icon" sizes="180x180" href="/interfaz/iconos-app/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/interfaz/iconos-app/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/interfaz/iconos-app/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/interfaz/iconos-app/safari-pinned-tab.svg" color="#a8b7c2">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="msapplication-TileColor" content="#eceff1">
+	<meta name="msapplication-config" content="/browserconfig.xml">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#2277dd">
+</head>
+<body>
+	<noscript>javascript please</noscript>
+	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+	${require('../../../interfaz/html/wm-barra-superior.html')}
+	<div class="container-fluid pagina">
+		<div class="row pagina">
+			<div class="col-sm-3 col-md-2 menu-lateral">
+				${require('../../../interfaz/html/wm-menu-lateral.html')}
+			</div>
+			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+				<div id="contenidos">
+					<h1 data-contenido="wmAutores">&nbsp;</h1>
+					<hr>
+					<div class="row">
+						<div class="col-sm-8">
+							<input type="hidden" id="guardarNuevo" value="1">
+							<input type="hidden" id="uid" value="0">
+							<div class="grupo row">
+								<div class="col-sm-8">
+									<label data-contenido="wmNombre">&nbsp;</label>
+									<h3 id="nombreUsr"></h3>
+								</div>
+								<div class="col-sm-4">
+									<label data-contenido="wmArticulos">&nbsp;</label>
+									<h3 id="nroArticulos"></h3>
+								</div>
+							</div>
+							<hr>
+							<div class="grupo">
+								<label data-contenido="wmFirma">&nbsp;</label>
+								<input type="text" maxlength="60" id="seudonimo" class="control" required>
+							</div>
+							<div class="grupo">
+								<label data-contenido="wmDescripcion">&nbsp;</label>
+								<textarea id="descripcion" class="control"></textarea>
+							</div>
+							<div class="grupo">
+								<input type="checkbox" id="activo" class="control">
+								<label for="activo" data-contenido="wmAutorActivo">&nbsp;</label>
+							</div>
+							<label data-contenido="wmSecciones">&nbsp;</label>
+							<div class="multi-select" id="secciones">
+								<div class="grupo desplegable">
+									<select class="control">
+										<!--<option value="0">&nbsp;</option>-->
+									</select><!--
+								 --><button type="button" class="sel-menos boton color-cuatro"><span class="ico">${require('../../../interfaz/iconos/fa/solid/times.svg')}</span></button>
+								</div>
+								<button type="button" class="sel-mas boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/plus.svg')}</span></button>
+							</div>
+								<div class="grupo botonera-crud">
+									<button type="button" id="nuevo" class="boton color-uno">
+										<span class="ico">${require('../../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+									</button>
+									<button type="button" id="guardar" class="boton color-dos">
+										<span class="ico">${require('../../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+									</button>
+									<button type="button" id="eliminar" class="boton color-cuatro">
+										<span class="ico">${require('../../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+									</button>
+								</div>
+						</div>
+						<div class="col-sm-4 barra-derecha">
+							<div class="grupo">
+								<label data-contenido="wmAutores">&nbsp;</label>
+								<ul id="listaAutores" class="lista-select control"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<div id="nuevoAutor" class="emergente">
+		<div class="fondo"></div>
+		<div class="ventana">
+			<a href="#" class="cerrar">&#215;</a>
+			<h2 class="titulo" data-contenido="wmAutorNuevo">&nbsp;</h2>
+			<div class="cuerpo">
+				<div class="grupo">
+					<input type="email" maxlength="40" id="emailNuevoAutor" class="control" data-contenido="wmEmail">
+				</div>
+				<p class="aviso"></p>
+
+				<p class="info">Ingrese el email con el que se registró el usuario.</p>
+
+				<div class="pie grupo">
+					<button type="button" id="buscarUsuario" class="boton color-uno">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	${require('../../../interfaz/html/confirma-continuar.html')}
+	<div id="confirmaBorrar" class="emergente">
+		<div class="fondo"></div>
+		<div class="ventana">
+			<a href="#" class="cerrar">&#215;</a>
+			<div class="cuerpo">
+				<p data-contenido="wmSeBorraraAutor">&nbsp;</p>
+				<br>
+				<div class="grupo">
+					<button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
+					<button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<span class="oculto">
+		<span class="okGuardado" data-contenido="wmOkGuardado"></span>
+	</span>
+</body>
+</html>
