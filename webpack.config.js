@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 
@@ -14,24 +13,18 @@ const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 module.exports = {
 
 	entry: {
-		inicio: './fuente/interfaz/js/inicio.js',
-		articulos: './fuente/interfaz/js/articulos.js',
-		articulo: './fuente/interfaz/js/articulo.js',
-		categoria: './fuente/interfaz/js/categoria.js',
-		busqueda: './fuente/interfaz/js/busqueda.js',
-		cmsEditor: './fuente/interfaz/js/cmsEditor.js',
-		'wm-login': './fuente/interfaz/js/wm-login.js',
-		'wm-inicio': './fuente/interfaz/js/wm-inicio.js',
-		'wm-secciones-indice': './fuente/interfaz/js/wm-secciones-indice.js',
-		'wm-secciones-articulo': './fuente/interfaz/js/wm-secciones-articulo.js',
-		'wm-secciones-categorias': './fuente/interfaz/js/wm-secciones-categorias.js',
-		'wm-secciones-secciones': './fuente/interfaz/js/wm-secciones-secciones.js',
-		'wm-secciones-autores': './fuente/interfaz/js/wm-secciones-autores.js',
-		'wm-contenidos': './fuente/interfaz/js/wm-contenidos.js',
-		'wm-push': './fuente/interfaz/js/wm-push.js'
+		'login': './fuente/wm/interfaz/js/login.js',
+		'inicio': './fuente/wm/interfaz/js/inicio.js',
+		'secciones-indice': './fuente/wm/interfaz/js/secciones-indice.js',
+		'secciones-articulo': './fuente/wm/interfaz/js/secciones-articulo.js',
+		'secciones-categorias': './fuente/wm/interfaz/js/secciones-categorias.js',
+		'secciones-secciones': './fuente/wm/interfaz/js/secciones-secciones.js',
+		'secciones-autores': './fuente/wm/interfaz/js/secciones-autores.js',
+		'contenidos': './fuente/wm/interfaz/js/contenidos.js',
+		'push': './fuente/wm/interfaz/js/push.js'
 	},
 	output: {
-		filename: 'interfaz/js/[name].js',
+		filename: 'wm/interfaz/js/[name].js',
 		path: path.resolve(__dirname, 'app')
 	},
 
@@ -89,7 +82,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				exclude: /(node_modules|wm-ckeditor|cmsCkeditor\.js)/,
+				exclude: /(node_modules|ckeditor|cmsCkeditor\.js)/,
 				use: {
 					loader: "babel-loader",
 					options: {
@@ -116,8 +109,8 @@ module.exports = {
 					{
 						loader: 'file-loader',
 						options: {
-							//name: '/interfaz/img/[name]_[hash:7].[ext]'			// Así queda en img src
-							name: '/interfaz/img/[name].[ext]'
+							//name: '/wm/interfaz/img/[name]_[hash:7].[ext]'			// Así queda en img src
+							name: '/wm/interfaz/img/[name].[ext]'
 						}
 					}
 				]
@@ -152,86 +145,55 @@ module.exports = {
 		}),
 		//
 		new HtmlWebpackPlugin({
-			chunks: [ 'inicio' ],
-			filename: path.resolve(__dirname, 'app/index.html'),
-			template: path.resolve(__dirname, 'fuente/index.html'),
-			hash: true
-		}),
-		new HtmlWebpackPlugin({
-			chunks: [ 'articulos' ],
-			filename: path.resolve(__dirname, 'app/articulos/index.html'),
-			template: path.resolve(__dirname, 'fuente/articulos/index.html'),
-			hash: true
-		}),
-		new HtmlWebpackPlugin({
-			chunks: [ 'articulo' ],
-			filename: path.resolve(__dirname, 'app/articulo/index.html'),
-			template: path.resolve(__dirname, 'fuente/articulo/index.html'),
-			hash: true
-		}),
-		new HtmlWebpackPlugin({
-			chunks: [ 'categoria' ],
-			filename: path.resolve(__dirname, 'app/categoria/index.html'),
-			template: path.resolve(__dirname, 'fuente/categoria/index.html'),
-			hash: true
-		}),
-		new HtmlWebpackPlugin({
-			chunks: [ 'busqueda' ],
-			filename: path.resolve(__dirname, 'app/busqueda/index.html'),
-			template: path.resolve(__dirname, 'fuente/busqueda/index.html'),
-			hash: true
-		}),
-		//
-		new HtmlWebpackPlugin({
-			chunks: [ 'wm-login' ],
+			chunks: [ 'login' ],
 			filename: path.resolve(__dirname, 'app/wm/login/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/login/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-inicio' ],
+			chunks: [ 'inicio' ],
 			filename: path.resolve(__dirname, 'app/wm/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-secciones-indice' ],
+			chunks: [ 'secciones-indice' ],
 			filename: path.resolve(__dirname, 'app/wm/secciones/indice/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/secciones/indice/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-secciones-articulo' ],
+			chunks: [ 'secciones-articulo' ],
 			filename: path.resolve(__dirname, 'app/wm/secciones/articulo/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/secciones/articulo/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-secciones-categorias' ],
+			chunks: [ 'secciones-categorias' ],
 			filename: path.resolve(__dirname, 'app/wm/secciones/categorias/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/secciones/categorias/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-secciones-secciones' ],
+			chunks: [ 'secciones-secciones' ],
 			filename: path.resolve(__dirname, 'app/wm/secciones/secciones/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/secciones/secciones/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-secciones-autores' ],
+			chunks: [ 'secciones-autores' ],
 			filename: path.resolve(__dirname, 'app/wm/secciones/autores/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/secciones/autores/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-contenidos' ],
+			chunks: [ 'contenidos' ],
 			filename: path.resolve(__dirname, 'app/wm/contenidos/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/contenidos/index.html'),
 			hash: true
 		}),
 		new HtmlWebpackPlugin({
-			chunks: [ 'wm-push' ],
+			chunks: [ 'push' ],
 			filename: path.resolve(__dirname, 'app/wm/push/index.html'),
 			template: path.resolve(__dirname, 'fuente/wm/push/index.html'),
 			hash: true
@@ -242,11 +204,6 @@ module.exports = {
 			// both options are optional
 			filename: 'interfaz/css/[name].css',
 			chunkFilename: 'interfaz/css/[id].css'
-		}),
-		new ServiceWorkerWebpackPlugin({
-			entry: path.join(__dirname, 'fuente/sw.js'),
-			filename: 'sw.js',
-			excludes: ['*']
 		})
 	]
 };

@@ -21,11 +21,11 @@
 <body>
 	<noscript>javascript please</noscript>
 	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
-	${require('../../../interfaz/html/wm-barra-superior.html')}
+	${require('../../interfaz/html/barra-superior.html')}
 	<div class="container-fluid pagina">
 		<div class="row pagina">
 			<div class="col-sm-3 col-md-2 menu-lateral">
-				${require('../../../interfaz/html/wm-menu-lateral.html')}
+				${require('../../interfaz/html/menu-lateral.html')}
 			</div>
 			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 				<div id="contenidos">
@@ -56,13 +56,13 @@
 								<div class="col-sm-12">
 									<div class="grupo botonera-crud">
 										<button type="button" id="nuevo" class="boton color-uno">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
 										</button>
 										<button type="button" id="guardar" class="boton color-dos">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
 										</button>
 										<button type="button" id="eliminar" class="boton color-cuatro">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
 										</button>
 									</div>
 								</div>
@@ -83,13 +83,13 @@
 							<hr>
 							<div class="grupo imgPrincipal">
 								<label data-contenido="wmImgPrincipal">&nbsp;</label>
-								<button type="button" class="boton color-cuatro quitar oculto"><span class="ico">${require('../../../interfaz/iconos/fa/solid/times.svg')}</span></button>
+								<button type="button" class="boton color-cuatro quitar oculto"><span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span></button>
 								<button type="button" class="boton color-uno selector">
 									<span class="ico"><svg viewBox="0 0 20 20"><path d="M6.91 10.54c.26-.23.64-.21.88.03l3.36 3.14 2.23-2.06a.64.64 0 0 1 .87 0l2.52 2.97V4.5H3.2v10.12l3.71-4.08zm10.27-7.51c.6 0 1.09.47 1.09 1.05v11.84c0 .59-.49 1.06-1.09 1.06H2.79c-.6 0-1.09-.47-1.09-1.06V4.08c0-.58.49-1.05 1.1-1.05h14.38zm-5.22 5.56a1.96 1.96 0 1 1 3.4-1.96 1.96 1.96 0 0 1-3.4 1.96z"></path></svg></span>
 								</button>
 								<input type="hidden" id="urlImgPrincipal">
 								<div class="contenedor">
-									<img src="../../../interfaz/img/sin_foto.jpg" class="foto">
+									<img src="../../interfaz/img/sin_foto.jpg" class="foto">
 								</div>
 							</div>
 							<hr>
@@ -99,7 +99,7 @@
 			</main>
 		</div>
 	</div>
-	${require('../../../interfaz/html/confirma-continuar.html')}
+	${require('../../interfaz/html/confirma-continuar.html')}
 	<div id="confirmaBorrar" class="emergente">
 		<div class="fondo"></div>
 		<div class="ventana">
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 	</div>
-	${require('../../../interfaz/html/widgets/wm-selector-imagen.html')}
+	${require('../../interfaz/html/widgets/selector-imagen.html')}
 	<span class="oculto">
 		<span class="okGuardado" data-contenido="wmOkGuardado"></span>
 		<span class="errorObteniendoCat" data-contenido="wmErrorObteniendoCat"></span>

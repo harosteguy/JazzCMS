@@ -20,11 +20,11 @@
 <body>
 	<noscript>javascript please</noscript>
 	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
-	${require('../../../interfaz/html/wm-barra-superior.html')}
+	${require('../../interfaz/html/barra-superior.html')}
 	<div class="container-fluid pagina">
 		<div class="row pagina">
 			<div class="col-sm-3 col-md-2 menu-lateral">
-				${require('../../../interfaz/html/wm-menu-lateral.html')}
+				${require('../../interfaz/html/menu-lateral.html')}
 			</div>
 			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 				<div id="contenidos">
@@ -35,7 +35,7 @@
 						<div class="col-sm-4 barra-derecha">
 							<div class="grupo">
 								<a id="crearArti" href="/[[idiomaUrl]]wm/secciones/articulo/" class="boton color-dos">
-									<span class="ico">${require('../../../interfaz/iconos/fa/solid/plus.svg')}&nbsp;&nbsp;<span data-contenido="wmCrearArti">&nbsp;</span>
+									<span class="ico">${require('../../interfaz/iconos/fa/solid/plus.svg')}&nbsp;&nbsp;<span data-contenido="wmCrearArti">&nbsp;</span>
 								</a>
 							</div>
 						</div>
@@ -48,7 +48,7 @@
 									<div class="col-xs-5"><a href="#" class="titulo">&nbsp;</a></div>
 									<div class="col-xs-4"><span class="autor">&nbsp;</span></div>
 									<div class="col-xs-2 texto-derecha"><span class="fecha">&nbsp;</span></div>
-									<div class="col-xs-1 texto-centro"><a href="#" class="editar"><span class="ico">${require('../../../interfaz/iconos/fa/solid/pen.svg')}</span></a></div>
+									<div class="col-xs-1 texto-centro"><a href="#" class="editar"><span class="ico">${require('../../interfaz/iconos/fa/solid/pen.svg')}</span></a></div>
 								</div>
 								<div class="row cabeza">
 									<div class="col-xs-5"><label data-contenido="wmTitulo">&nbsp;</label></div>
@@ -59,7 +59,7 @@
 								<div class="lista"></div>
 								<div class="pie">
 									<button data-url="" class="boton color-uno oculto verMas">
-										<span class="ico">${require('../../../interfaz/iconos/fa/solid/chevron-down.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmVerMas">&nbsp;</span>
+										<span class="ico">${require('../../interfaz/iconos/fa/solid/chevron-down.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmVerMas">&nbsp;</span>
 									</button>
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 							<div class="grupo">
 								<div class="grupo buscador">
 									<input type="text" maxlength="200" class="control texto"><!--
-								 --><button type="button" class="boton color-uno buscar"><span class="ico">${require('../../../interfaz/iconos/fa/solid/search.svg')}</span></button>
+								 --><button type="button" class="boton color-uno buscar"><span class="ico">${require('../../interfaz/iconos/fa/solid/search.svg')}</span></button>
 								</div>
 								<button id="verTodos" class="boton color-dos" data-contenido="wmVerTodos">&nbsp;</button>
 							</div>
@@ -86,14 +86,14 @@
 									<div class="grupo desde">
 										<label data-contenido="wmDesde">&nbsp;</label>
 										<input type="text" maxlength="20" id="desde" class="control">
-										<button type="button" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/sync-alt.svg')}</span></button>
+										<button type="button" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/sync-alt.svg')}</span></button>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="grupo hasta">
 										<label data-contenido="wmHasta">&nbsp;</label>
 										<input type="text" maxlength="20" id="hasta" class="control">
-										<button type="button" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/sync-alt.svg')}</span></button>
+										<button type="button" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/sync-alt.svg')}</span></button>
 									</div>
 								</div>
 							</div>
@@ -123,15 +123,15 @@
 									<div class="col-sm-6">
 										<label data-contenido="wmOrden">&nbsp;</label><br>
 										<div id="ordenCampo" class="botonera">
-											<button value="crono" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/calendar.svg')}</span></button>
-											<button value="alfa" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/font.svg')}</span></button>
+											<button value="crono" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/calendar.svg')}</span></button>
+											<button value="alfa" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/font.svg')}</span></button>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<label data-contenido="wmDireccion">&nbsp;</label><br>
 										<div id="ordenDir" class="botonera">
-											<button value="asc" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/sort-amount-up.svg')}</span></button>
-											<button value="desc" class="boton color-uno"><span class="ico">${require('../../../interfaz/iconos/fa/solid/sort-amount-down.svg')}</span></button>
+											<button value="asc" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/sort-amount-up.svg')}</span></button>
+											<button value="desc" class="boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/sort-amount-down.svg')}</span></button>
 										</div>
 									</div>
 								</div>

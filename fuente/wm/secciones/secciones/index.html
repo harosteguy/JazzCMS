@@ -21,11 +21,11 @@
 <body>
 	<noscript>javascript please</noscript>
 	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
-	${require('../../../interfaz/html/wm-barra-superior.html')}
+	${require('../../interfaz/html/barra-superior.html')}
 	<div class="container-fluid pagina">
 		<div class="row pagina">
 			<div class="col-sm-3 col-md-2 menu-lateral">
-				${require('../../../interfaz/html/wm-menu-lateral.html')}
+				${require('../../interfaz/html/menu-lateral.html')}
 			</div>
 			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 				<div id="contenidos">
@@ -56,13 +56,13 @@
 								<div class="col-sm-12">
 									<div class="grupo botonera-crud">
 										<button type="button" id="nuevo" class="boton color-uno">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
 										</button>
 										<button type="button" id="guardar" class="boton color-dos">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
 										</button>
 										<button type="button" id="eliminar" class="boton color-cuatro">
-											<span class="ico">${require('../../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+											<span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
 										</button>
 									</div>
 								</div>
@@ -79,7 +79,7 @@
 			</main>
 		</div>
 	</div>
-	${require('../../../interfaz/html/confirma-continuar.html')}
+	${require('../../interfaz/html/confirma-continuar.html')}
 	<div id="confirmaBorrar" class="emergente">
 		<div class="fondo"></div>
 		<div class="ventana">
