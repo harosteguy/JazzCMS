@@ -99,14 +99,8 @@ function hacer() {
 			// Obtiene categorías de la sección
 			blogBase = listaSecciones.seleccionado().clave;
 			return fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${blogBase}/categorias`, { method: 'get', headers: reqHeaders } );
-
-		} else {														// El usuario no tiene permisos en ningún blog
-			localStorage.removeItem('uid');
-			localStorage.removeItem('token');
-			localStorage.removeItem('nombre');
-			localStorage.removeItem('apellido');
-			localStorage.removeItem('esAdmin');
-			window.location.href = `/${idiomaUrl}`;
+		} else {						// El usuario no tiene permisos en ningún blog o no hay secciones cargadas
+			window.location.href = `/${idiomaUrl}wm`;
 		}
 	})
 	.then( respuesta => respuesta.json() )

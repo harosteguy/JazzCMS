@@ -202,8 +202,8 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
-			filename: 'interfaz/css/[name].css',
-			chunkFilename: 'interfaz/css/[id].css'
+			filename: 'wm/interfaz/css/[name].css',
+			chunkFilename: 'wm/interfaz/css/[id].css'
 		})
 	]
 };

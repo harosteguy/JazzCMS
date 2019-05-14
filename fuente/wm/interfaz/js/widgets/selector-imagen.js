@@ -61,7 +61,7 @@ export default class SelectorImagen {
 					this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange );
 					this.divSelector.remove();											// Elimina selector del DOM
 					document.getElementById('selectorImagenModal').classList.remove('visible');
-					// Quita sufijo al nombre de la imsgen	'/img/foto-480.jpg' >--> '/img/foto.jpg'
+					// Quita sufijo al nombre de la imagen	'/img/foto-480.jpg' >--> '/img/foto.jpg'
 					let imgSrc = evento.target.src.substr( 0, evento.target.src.length - 8 ) + evento.target.src.substr( -4 );
 					//
 					resuelve( [ imgSrc, 'existente' ] );
