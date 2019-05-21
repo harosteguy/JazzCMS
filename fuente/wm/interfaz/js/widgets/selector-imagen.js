@@ -120,8 +120,8 @@ export default class SelectorImagen {
 				req.send( formData );
 			};
 			// Agrega escuchadores
-			this.divSelector.addEventListener('click', escuchaClick );
-			this.divSelector.querySelector('.inputImagen').addEventListener('change', escuchaInputImgChange );
+			document.getElementById('selectorImagenModal').addEventListener('click', escuchaClick );
+			document.getElementById('selectorImagenModal').addEventListener('change', escuchaInputImgChange );
 		});
 	}
 
