@@ -13,6 +13,7 @@ const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 module.exports = {
 
 	entry: {
+		'pagina-ejemplo': './fuente/wm/interfaz/js/pagina-ejemplo.js',
 		'login': './fuente/wm/interfaz/js/login.js',
 		'inicio': './fuente/wm/interfaz/js/inicio.js',
 		'secciones-indice': './fuente/wm/interfaz/js/secciones-indice.js',
@@ -142,6 +143,13 @@ module.exports = {
 		new CKEditorWebpackPlugin( {
 			// See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
 			language: 'en'
+		}),
+		//
+		new HtmlWebpackPlugin({
+			chunks: [ 'pagina-ejemplo' ],
+			filename: path.resolve(__dirname, 'app/index.html'),
+			template: path.resolve(__dirname, 'fuente/index.html'),
+			hash: true
 		}),
 		//
 		new HtmlWebpackPlugin({

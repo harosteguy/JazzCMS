@@ -3,7 +3,6 @@ import { autorizacion } from './usuario';
 import { emergente } from './emergente';
 
 export let urlBaseApi = 'https://jazzcms.com';	// Dejar vacío si es igual a la URL de la aplicación
-export let urlBaseApp = 'https://cms.local';	// Dejar vacío si es igual a la URL de la API
 
 export let setIdiomas = ['es', 'en'];		// El primero es el idioma por defecto
 

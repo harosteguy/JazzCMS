@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans&display=swap');
+
+@import './imports/prefijos';
+@import './imports/variables';
+@import './imports/normalize';
+@import './imports/base';
+@import './imports/texto';
+// Grilla
+@import "./imports/mixins/clearfix";
+@import "./imports/mixins/grid-framework";
+@import "./imports/mixins/grid";
+@import "./imports/grid";
+
+html {
+	position: relative;
+	min-height: 100% !important;
+	height: 100%;
+}
+
+body {
+	position: relative;
+	height: 100%;
+	> header {
+		padding: 40px;
+		text-align: center;
+		background: $color-uno;
+		h1 {
+			color: $color-gris-claro;
+		}
+		a.idioma {
+			position: absolute;
+			top: 1.6em;
+			right: 1.6em;
+			font-weight: 600;
+			font-size: 1.3em;
+			letter-spacing: 1.5px;
+			color: #fff;
+		}
+	}
+	> footer {
+		padding: 40px;
+		text-align: center;
+		background: $color-uno;
+		h3 {
+			color: $color-gris-claro;
+		}
+	}
+}
+
+.caja {
+	padding: 2em;
+	img {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+}
+
+.ico {
+	display: inline-block;
+	height: 1em;
+	svg {
+		height: 100%;
+		fill: currentColor;
+		vertical-align: -.125em;
+	}
+}
+
