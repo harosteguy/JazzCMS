@@ -18,6 +18,7 @@ Aplicación web para la gestión de contenidos de aplicaciones.
 ---
 ## Instalación
 
+- Copiar el contenido de la carpeta app en la carpeta de html público de tu servidor.
 
 ---
 ## Configuración
@@ -27,6 +28,9 @@ Aplicación web para la gestión de contenidos de aplicaciones.
 ---
 ## Uso
 
+- Cargar en un navegador y empezar a gestionar.
+
+Las credenciales del usuario "admin" se configuran durante la instalación de las APIs.
 
 ---
 ## Licencia
