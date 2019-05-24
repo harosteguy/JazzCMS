@@ -29,11 +29,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'app')
 	},
 
-	mode: "development",
-	devtool: 'inline-source-map',
+	//mode: "development",
+	//devtool: 'inline-source-map',
 
-	//mode: "production",
-	//devtool: '',
+	mode: "production",
+	devtool: '',
 	//devtool: 'source-map',
 
 /*	devServer: {
@@ -122,8 +122,8 @@ module.exports = {
 		minimizer: [
 			new UglifyJsPlugin({
 				cache: true,
-				parallel: true
-				//sourceMap: true // set to true if you want JS source maps
+				parallel: true,
+				sourceMap: true // set to true if you want JS source maps
 			}),
 			new OptimizeCSSAssetsPlugin({})
 		]

@@ -1,3 +1,23 @@
+/**
+ * This file is part of JazzCMS
+ *
+ * JazzCMS - Webapp for managing content of applications.
+ * Copyright (C) 2019 by Guillermo Harosteguy <harosteguy@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import { setIdiomas } from './comun';
 
 export function dispararEvento( elemento, evento ) {
@@ -22,14 +42,7 @@ export function subirHasta( elemento, etiqueta ) {
 	}
 	return null;
 }
-
-// Copies a string to the clipboard. Must be called from within an 
-// event handler such as click. May return false if it failed, but
-// this is not always possible. Browser support for Chrome 43+, 
-// Firefox 42+, Safari 10+, Edge and IE 10+.
-// IE: The clipboard feature may be disabled by an administrator. By
-// default a prompt is shown the first time the clipboard is 
-// used (per session).
+/*
 export function copiarAlPortapapeles( text ) {
     if (window.clipboardData && window.clipboardData.setData) {
         // IE specific code path to prevent textarea being shown while dialog is visible.
@@ -51,7 +64,7 @@ export function copiarAlPortapapeles( text ) {
         }
     }
 }
-
+*/
 export function padIzquierdo( cadenaOrigen, cadenaPadding ) {
 	return String( cadenaPadding + cadenaOrigen ).slice( - cadenaPadding.length );
 }

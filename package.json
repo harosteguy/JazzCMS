@@ -1,5 +1,5 @@
 {
-  "name": "jazzapp",
+  "name": "jazzcms",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
   },
   "keywords": [],
   "author": "Guillermo Harosteguy",
-  "license": "ISC",
-  "description": "",
+  "license": "GPL-3.0-or-later",
+  "description": "Aplicación web para la gestión de contenidos de aplicaciones.",
   "devDependencies": {
     "@ckeditor/ckeditor5-adapter-ckfinder": "^11.0.0",
     "@ckeditor/ckeditor5-autoformat": "^11.0.0",
