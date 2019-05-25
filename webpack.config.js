@@ -6,12 +6,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
-
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-
 module.exports = {
-
 	entry: {
 		'pagina-ejemplo': './fuente/wm/interfaz/js/pagina-ejemplo.js',
 		'login': './fuente/wm/interfaz/js/login.js',
@@ -212,6 +210,32 @@ module.exports = {
 			// both options are optional
 			filename: 'wm/interfaz/css/[name].css',
 			chunkFilename: 'wm/interfaz/css/[id].css'
+		}),
+		new FaviconsWebpackPlugin({
+			// Your source logo
+			logo: path.resolve(__dirname, 'fuente/wm/interfaz/img/logo.svg'),
+			// The prefix for all image files (might be a folder or a name)
+			prefix: 'icons-[hash:8]/',
+			// Generate a cache file with control hashes and
+			// don't rebuild the favicons until those hashes change
+			persistentCache: true,
+			// Inject the html into the html-webpack-plugin
+			inject: true,
+			// favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+			background: '#1565c0',
+			// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+			icons: {
+				android: true,
+				appleIcon: true,
+				appleStartup: false,
+				coast: false,
+				favicons: true,
+				firefox: true,
+				opengraph: false,
+				twitter: false,
+				yandex: false,
+				windows: false
+			}
 		})
 	]
 };
