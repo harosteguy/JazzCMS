@@ -18,38 +18,37 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { urlBaseApi } from './comun';
+import { urlBaseApi } from './comun'
 
-export function autorizacion() {
-	return new Promise( ( resuelve, rechaza ) => {
-		if ( localStorage.getItem('uid') && localStorage.getItem('token') ) {
-			let htmlLang = document.getElementsByTagName('html')[0].getAttribute('lang') == 'en' ? 'en' : 'es';
-			let reqHeaders = {
-				"Authorization": "Basic " + btoa( localStorage.getItem('uid') + ":" + localStorage.getItem('token') ),
-				"Accept-Language": htmlLang
-			};
-			fetch(`${urlBaseApi}/apis/usuarios/v1/autorizacion`, { method: 'get', headers: reqHeaders } )
-			.then( respuesta => {
-				if ( respuesta.status !== 200 ) {
-					rechaza( new Error('Usuario no autorizado') );
-					return;
-				}
-				return respuesta.json();
-			})
-			.then( usuario => {
-				resuelve( usuario );
-			})
-			.catch( error => {
-				rechaza( new Error('Usuario no autorizado') );
-			});
-		} else {
-			rechaza( new Error('Usuario no autorizado') );
-		}
-	});
+export function autorizacion () {
+  return new Promise((resolve, reject) => {
+    if (window.localStorage.getItem('uid') && window.localStorage.getItem('token')) {
+      let htmlLang = document.getElementsByTagName('html')[0].getAttribute('lang') === 'en' ? 'en' : 'es'
+      let reqHeaders = {
+        'Authorization': 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token')),
+        'Accept-Language': htmlLang
+      }
+      window.fetch(`${urlBaseApi}/apis/usuarios/v1/autorizacion`, { method: 'get', headers: reqHeaders })
+        .then(respuesta => {
+          if (respuesta.status !== 200) {
+            reject(new Error('Usuario no autorizado'))
+            return
+          }
+          return respuesta.json()
+        })
+        .then(usuario => {
+          resolve(usuario)
+        })
+        .catch(error => {
+          console.error(error)
+          reject(new Error('Usuario no autorizado'))
+        })
+    } else {
+      reject(new Error('Usuario no autorizado'))
+    }
+  })
 }
 
-export function login ( email, clave ) {
-
-
+export function login (email, clave) {
 
 }
