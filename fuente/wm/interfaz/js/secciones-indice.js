@@ -25,7 +25,8 @@ import { getFechaCorta, fechaHora2horaMinutos, fechaHoraDb } from './modulos/uti
 import { botonera, ListaSelect } from './modulos/formularios'
 import tostada from './widgets/tostada'
 import flatpickr from 'flatpickr'
-import '../../../../node_modules/flatpickr/dist/l10n/es'
+// import '../../../../node_modules/flatpickr/dist/l10n/es'
+import { Spanish } from '../../../../node_modules/flatpickr/dist/l10n/es'
 import '../../../../node_modules/flatpickr/dist/themes/material_blue.css'
 //
 comun.setIdiomaPagina()
@@ -87,6 +88,9 @@ function hacer () {
   botonera.iniciar(document.getElementById('filtroEstado'), 'todos')
   comun.setLinkIdioma()
   document.querySelector('.menu-lateral .secciones-indice').classList.add('activo')
+  if (idioma === 'es') {
+    flatpickr.localize(Spanish)
+  }
   flatpickr(document.getElementById('desde'), {
     enableTime: false,
     allowInput: false,

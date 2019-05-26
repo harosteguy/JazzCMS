@@ -20,9 +20,12 @@
 
 // En webpack.config.js se excluye este archivo de babel-loader para poder extender la función Plugin sin error
 //* ************************************************************************************************************
-import { urlBaseApi } from './comun'
+import { urlBaseApi, obtenerIdiomaUrl } from './comun'
 import tostada from '../widgets/tostada'
 import SelectorImagen from '../widgets/selector-imagen'
+
+import './ckeditor5-idiomas/en.js'
+import './ckeditor5-idiomas/es.js'
 
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
@@ -242,6 +245,7 @@ class ImagenDeContenido extends Plugin {
 }
 
 let ckOpciones = {
+  language: obtenerIdiomaUrl(),
   heading: {
     options: [
       { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
@@ -284,5 +288,6 @@ export function crearEditor (elementoDom, editorPara) {
       removeProviders: [ 'instagram', 'twitter', 'googleMaps', 'flickr', 'facebook' ]
     }
   }
+
   return ClassicEditor.create(elementoDom, ckOpciones)
 }

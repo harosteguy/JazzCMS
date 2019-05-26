@@ -116,7 +116,15 @@ module.exports = {
     // new BundleAnalyzerPlugin(),
     new CKEditorWebpackPlugin({
       // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
-      language: 'en'
+      language: 'en',
+      additionalLanguages: ['es'],
+      outputDirectory: 'wm/interfaz/js/ckeditor5-translations',
+      // Whether the build process should fail if an error occurs.
+      // Defaults to `false`.
+      strict: true,
+      // Whether to log all warnings to the console.
+      // Defaults to `false`.
+      verbose: true
     }),
     //
     new HtmlWebpackPlugin({
@@ -185,7 +193,7 @@ module.exports = {
       // Your source logo
       logo: path.resolve(__dirname, 'fuente/wm/interfaz/img/logo.svg'),
       // The prefix for all image files (might be a folder or a name)
-      prefix: 'icons-[hash:8]/',
+      prefix: 'wm/interfaz/iconos-app[hash:8]/',
       // Generate a cache file with control hashes and
       // don't rebuild the favicons until those hashes change
       persistentCache: true,
