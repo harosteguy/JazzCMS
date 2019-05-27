@@ -1,162 +1,158 @@
 <!DOCTYPE html>
 <html lang="[[idioma]]">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>JazzCMS</title>
-	<base href="/">
-	<meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JazzCMS</title>
+  <base href="/">
+  <meta name="robots" content="noindex">
 </head>
 <body>
-	<noscript>javascript please</noscript>
-	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
-	${require('../../interfaz/html/barra-superior.html')}
-	<div class="container-fluid pagina">
-		<div class="row pagina">
-			<div class="col-sm-3 col-md-2 menu-lateral">
-				${require('../../interfaz/html/menu-lateral.html')}
-			</div>
-			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-				<div id="contenidos">
-					<h1 data-contenido="wmEditorArti">&nbsp;</h1>
-					<hr>
-					<div class="row">
-						<div class="col-sm-8">
-							<form>
-								<input type="hidden" id="tituloUrlOriginal" value="">
-<span class="oculto">
-								<div class="grupo">
-									<label data-contenido="wmCopete">&nbsp;</label>
-									<input type="text" maxlength="255" id="copete" class="control">
-								</div>
-</span>
-								<div class="grupo">
-									<label data-contenido="wmTitulo">&nbsp;</label>
-									<input type="text" maxlength="255" id="titulo" class="control">
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmTituloBase">&nbsp;</label>
-									<input type="text" maxlength="200" id="tituloUrl" class="control">
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmEntradilla">&nbsp;</label>
-									<textarea id="entradilla" class="control"></textarea>
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmCuerpo">&nbsp;</label>
-									<textarea id="texto" class="control"></textarea>
-								</div>
-								<div class="grupo botonera-crud">
-									<button type="button" id="nuevo" class="boton color-uno">
-										<span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
-									</button>
-									<button type="button" id="guardar" class="boton color-dos">
-										<span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
-									</button>
-									<button type="button" id="eliminar" class="boton color-cuatro">
-										<span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
-									</button>
-								</div>
-							</form>
-						</div>
-						<div class="col-sm-4 barra-derecha">
-							<form>
-								<div class="grupo">
-									<label data-contenido="wmSeccion">&nbsp;</label>
-									<select id="secciones" class="control">
-										<option value="">&nbsp;</option>
-									</select>
-								</div>
-								<hr>
-								<div class="grupo">
-									<label data-contenido="wmCategorias">&nbsp;</label>
-									<div class="multi-select" id="categorias">
-										<div class="grupo desplegable">
-											<select class="control"></select><!--
-										 --><button type="button" class="sel-menos boton color-cuatro"><span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span></button>
-										</div>
-										<button type="button" class="sel-mas boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/plus.svg')}</span></button>
-									</div>
-								</div>
-								<hr>
-								<div class="grupo">
-									<label data-contenido="wmFechaPubli">&nbsp;</label>
-									<input type="text" maxlength="20" id="fechaPublicado" class="control">
-								</div>
-								<hr>
-								<div class="grupo">
-									<input type="checkbox" id="publicado" class="control">
-									<label for="publicado" data-contenido="wmPublicado">&nbsp;</label>
-								</div>
-								<hr>
-<span class="oculto">
-								<div class="grupo">
-									<label data-contenido="wmTexto">&nbsp;</label>
-									<input type="text" maxlength="255" id="auxTexto" class="control">
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmFecha">&nbsp;</label>
-									<input type="text" maxlength="20" id="auxFecha" class="control">
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmEntero">&nbsp;</label>
-									<input type="number" id="auxEntero" class="control">
-								</div>
-								<div class="grupo">
-									<label data-contenido="wmDecimal">&nbsp;</label>
-									<input type="number" step="0.01" id="auxDecimal" class="control">
-								</div>
-								<hr>
-</span>
-								<div class="grupo imgPrincipal">
-									<label data-contenido="wmImgPrincipal">&nbsp;</label>
-									<button type="button" class="boton color-cuatro quitar oculto"><span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span></button>
-									<button type="button" class="boton color-uno selector">
-										<span class="ico"><svg viewBox="0 0 20 20"><path d="M6.91 10.54c.26-.23.64-.21.88.03l3.36 3.14 2.23-2.06a.64.64 0 0 1 .87 0l2.52 2.97V4.5H3.2v10.12l3.71-4.08zm10.27-7.51c.6 0 1.09.47 1.09 1.05v11.84c0 .59-.49 1.06-1.09 1.06H2.79c-.6 0-1.09-.47-1.09-1.06V4.08c0-.58.49-1.05 1.1-1.05h14.38zm-5.22 5.56a1.96 1.96 0 1 1 3.4-1.96 1.96 1.96 0 0 1-3.4 1.96z"></path></svg></span>
-									</button>
-									<input type="hidden" id="urlImgPrincipal">
-									<div class="contenedor">
-										<img src="../../interfaz/img/sin_foto.jpg" class="foto">
-									</div>
-								</div>
-								<hr>
-							</form>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
-	</div>
-	${require('../../interfaz/html/confirma-continuar.html')}
-	<div id="confirmaBorrar" class="emergente">
-		<div class="fondo"></div>
-		<div class="ventana">
-			<a href="#" class="cerrar">&#215;</a>
-			<div class="cuerpo">
-				<p data-contenido="wmSeBorraraArti">&nbsp;</p>
-				<br>
-				<div class="grupo">
-					<button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
-					<button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	${require('../../interfaz/html/widgets/selector-imagen.html')}
-	<span class="oculto">
-		<span class="okGuardado" data-contenido="wmOkGuardado"></span>
-		<span class="faltaSeccion" data-contenido="wmFaltaSeccion"></span>
-		<span class="faltaTitulo" data-contenido="wmFaltaTitulo"></span>
-		<span class="errorGuardandoArti" data-contenido="wmErrorGuardandoArti"></span>
-		<span class="errorBorrandoArti" data-contenido="wmErrorBorrandoArti"></span>
-		<!-- Widget selector de imágen -->
-		<span class="errorBorrandoImg" data-contenido="wmErrorBorrandoImg"></span>
-		<!-- Plugin de ckEditor ImagenDeArticulo -->
-		<span class="errorLeyendoUrl" data-contenido="wmErrorLeyendoUrl"></span>
-		<span class="errorSelectorImg" data-contenido="wmErrorSelectorImg"></span>
-		<span class="imgEnUsoEnArti" data-contenido="wmImgEnUsoEnArti"></span>
-		<span class="guardeArtiParaImg" data-contenido="wmGuardeArtiParaImg"></span>
-	</span>
+  <noscript>javascript please</noscript>
+  <div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+  ${require('../../interfaz/html/barra-superior.html')}
+  <div class="container-fluid pagina">
+    <div class="row pagina">
+      <div class="col-sm-3 col-md-2 menu-lateral">
+        ${require('../../interfaz/html/menu-lateral.html')}
+      </div>
+      <main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+        <div id="contenidos">
+          <h1 data-contenido="wmEditorArti">&nbsp;</h1>
+          <hr>
+          <div class="row">
+            <div class="col-sm-8">
+              <form>
+                <input type="hidden" id="tituloUrlOriginal" value="">
+                <div class="grupo">
+                  <label data-contenido="wmCopete">&nbsp;</label>
+                  <input type="text" maxlength="255" id="copete" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmTitulo">&nbsp;</label>
+                  <input type="text" maxlength="255" id="titulo" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmTituloBase">&nbsp;</label>
+                  <input type="text" maxlength="200" id="tituloUrl" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmEntradilla">&nbsp;</label>
+                  <textarea id="entradilla" class="control"></textarea>
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmCuerpo">&nbsp;</label>
+                  <textarea id="texto" class="control"></textarea>
+                </div>
+                <div class="grupo botonera-crud">
+                  <button type="button" id="nuevo" class="boton color-uno">
+                    <span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+                  </button>
+                  <button type="button" id="guardar" class="boton color-dos">
+                    <span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+                  </button>
+                  <button type="button" id="eliminar" class="boton color-cuatro">
+                    <span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-4 barra-derecha">
+              <form>
+                <div class="grupo">
+                  <label data-contenido="wmSeccion">&nbsp;</label>
+                  <select id="secciones" class="control">
+                    <option value="">&nbsp;</option>
+                  </select>
+                </div>
+                <hr>
+                <div class="grupo">
+                  <label data-contenido="wmCategorias">&nbsp;</label>
+                  <div class="multi-select" id="categorias">
+                    <div class="grupo desplegable">
+                      <select class="control"></select><!--
+                     --><button type="button" class="sel-menos boton color-cuatro"><span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span></button>
+                    </div>
+                    <button type="button" class="sel-mas boton color-uno"><span class="ico">${require('../../interfaz/iconos/fa/solid/plus.svg')}</span></button>
+                  </div>
+                </div>
+                <hr>
+                <div class="grupo">
+                  <label data-contenido="wmFechaPubli">&nbsp;</label>
+                  <input type="text" maxlength="20" id="fechaPublicado" class="control">
+                </div>
+                <hr>
+                <div class="grupo">
+                  <input type="checkbox" id="publicado" class="control">
+                  <label for="publicado" data-contenido="wmPublicado">&nbsp;</label>
+                </div>
+                <hr>
+                <div class="grupo">
+                  <label data-contenido="wmTexto">&nbsp;</label>
+                  <input type="text" maxlength="255" id="auxTexto" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmFecha">&nbsp;</label>
+                  <input type="text" maxlength="20" id="auxFecha" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmEntero">&nbsp;</label>
+                  <input type="number" id="auxEntero" class="control">
+                </div>
+                <div class="grupo">
+                  <label data-contenido="wmDecimal">&nbsp;</label>
+                  <input type="number" step="0.01" id="auxDecimal" class="control">
+                </div>
+                <hr>
+                <div class="grupo imgPrincipal">
+                  <label data-contenido="wmImgPrincipal">&nbsp;</label>
+                  <button type="button" class="boton color-cuatro quitar oculto"><span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span></button>
+                  <button type="button" class="boton color-uno selector">
+                    <span class="ico"><svg viewBox="0 0 20 20"><path d="M6.91 10.54c.26-.23.64-.21.88.03l3.36 3.14 2.23-2.06a.64.64 0 0 1 .87 0l2.52 2.97V4.5H3.2v10.12l3.71-4.08zm10.27-7.51c.6 0 1.09.47 1.09 1.05v11.84c0 .59-.49 1.06-1.09 1.06H2.79c-.6 0-1.09-.47-1.09-1.06V4.08c0-.58.49-1.05 1.1-1.05h14.38zm-5.22 5.56a1.96 1.96 0 1 1 3.4-1.96 1.96 1.96 0 0 1-3.4 1.96z"></path></svg></span>
+                  </button>
+                  <input type="hidden" id="urlImgPrincipal">
+                  <div class="contenedor">
+                    <img src="../../interfaz/img/sin_foto.jpg" class="foto">
+                  </div>
+                </div>
+                <hr>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  ${require('../../interfaz/html/confirma-continuar.html')}
+  <div id="confirmaBorrar" class="emergente">
+    <div class="fondo"></div>
+    <div class="ventana">
+      <a href="#" class="cerrar">&#215;</a>
+      <div class="cuerpo">
+        <p data-contenido="wmSeBorraraArti">&nbsp;</p>
+        <br>
+        <div class="grupo">
+          <button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
+          <button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  ${require('../../interfaz/html/widgets/selector-imagen.html')}
+  <span class="oculto">
+    <span class="okGuardado" data-contenido="wmOkGuardado"></span>
+    <span class="faltaSeccion" data-contenido="wmFaltaSeccion"></span>
+    <span class="faltaTitulo" data-contenido="wmFaltaTitulo"></span>
+    <span class="errorGuardandoArti" data-contenido="wmErrorGuardandoArti"></span>
+    <span class="errorBorrandoArti" data-contenido="wmErrorBorrandoArti"></span>
+    <!-- Widget selector de imágen -->
+    <span class="errorBorrandoImg" data-contenido="wmErrorBorrandoImg"></span>
+    <!-- Plugin de ckEditor ImagenDeArticulo -->
+    <span class="errorLeyendoUrl" data-contenido="wmErrorLeyendoUrl"></span>
+    <span class="errorSelectorImg" data-contenido="wmErrorSelectorImg"></span>
+    <span class="imgEnUsoEnArti" data-contenido="wmImgEnUsoEnArti"></span>
+    <span class="guardeArtiParaImg" data-contenido="wmGuardeArtiParaImg"></span>
+  </span>
 </body>
 </html>

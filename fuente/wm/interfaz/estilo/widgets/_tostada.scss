@@ -2,55 +2,55 @@
 @import '../imports/prefijos';
 
 #tostador {
-	position: fixed;
-	top: 10px;
-	right: 10px;
-	width: 300px;
-	z-index: 1100;
-	.tostada {
-		position: relative;
-		padding: 1.4em 1em 1em;
-		margin-bottom: 1em;
-		color: $color-gris-oscurisimo;
-		border: 1px solid $color-gris;
-		background: $color-gris-clarisimo;
-		border-radius: $boton-radius;
-		text-align: center;
-		opacity: 0;
-		@include transition(opacity 0.6s);
-		.cerrar {
-			position: absolute;
-			overflow: auto;
-			top: 0;
-			right: 0;
-			padding: 0 0.4em;
-			//line-height: 0.8;
-			font-weight: bold;
-			font-size: 1.4em;
-			color: $color-gris;
-		}
-		&.visible {
-			opacity: 1;
-		}
-		&.color-uno {
-			color: $color-uno-oscuro;
-			background: lighten( $color-uno-claro, 15% );
-			border-color: $color-uno;
-		}
-		&.color-dos {
-			color: $color-dos-oscuro;
-			background: lighten( $color-dos-claro, 15% );
-			border-color: $color-dos;
-		}
-		&.color-tres {
-			color: $color-tres-oscuro;
-			background: lighten( $color-tres-claro, 15% );
-			border-color: $color-tres;
-		}
-		&.color-cuatro {
-			color: $color-cuatro-oscuro;
-			background: lighten( $color-cuatro-claro, 15% );
-			border-color: $color-cuatro;
-		}
-	}
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 300px;
+  z-index: 1100;
+  .tostada {
+    position: relative;
+    padding: 1.4em 1em 1em;
+    margin-bottom: 1em;
+    color: $color-gris-oscurisimo;
+    border: 1px solid $color-gris;
+    background: $color-gris-clarisimo;
+    border-radius: $boton-radius;
+    text-align: center;
+    opacity: 0;
+    @include transition(opacity 0.6s);
+    .cerrar {
+      position: absolute;
+      overflow: auto;
+      top: 0;
+      right: 0;
+      padding: 0 0.4em;
+      //line-height: 0.8;
+      font-weight: bold;
+      font-size: 1.4em;
+      color: $color-gris;
+    }
+    &.visible {
+      opacity: 1;
+    }
+    &.color-uno {
+      color: $color-uno-oscuro;
+      background: lighten( $color-uno-claro, 15% );
+      border-color: $color-uno;
+    }
+    &.color-dos {
+      color: $color-dos-oscuro;
+      background: lighten( $color-dos-claro, 15% );
+      border-color: $color-dos;
+    }
+    &.color-tres {
+      color: $color-tres-oscuro;
+      background: lighten( $color-tres-claro, 15% );
+      border-color: $color-tres;
+    }
+    &.color-cuatro {
+      color: $color-cuatro-oscuro;
+      background: lighten( $color-cuatro-claro, 15% );
+      border-color: $color-cuatro;
+    }
+  }
 }

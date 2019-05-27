@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="[[idioma]]">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>JazzCMS</title>
-	<base href="/">
-	<meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JazzCMS</title>
+  <base href="/">
+  <meta name="robots" content="noindex">
 </head>
 <body>
-	<noscript>javascript please</noscript>
-	<div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
-	${require('../../interfaz/html/barra-superior.html')}
-	<div class="container-fluid pagina">
-		<div class="row pagina">
-			<div class="col-sm-3 col-md-2 menu-lateral">
-				${require('../../interfaz/html/menu-lateral.html')}
-			</div>
-			<main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-				<div id="contenidos">
-					<h1 data-contenido="wmSecciones">&nbsp;</h1>
-					<hr>
-					<div class="row">
-						<div class="col-sm-8">
-							<input type="hidden" id="nombreUrl" value="">
-							<div class="row">
-								<div class="col-xs-8">
-									<div class="grupo">
-										<label data-contenido="wmNombre">&nbsp;</label>
-										<input type="text" id="nombre" maxlength="80" class="control" required>
-									</div>
-								</div>
-								<div class="col-xs-4">
-									<div class="grupo">
-										<label>&nbsp;</label><br>
-										<label class="control"><span id="totArtis">0</span>&nbsp;<span data-contenido="wmArticulos">&nbsp;</span></label>
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="grupo">
-										<label data-contenido="wmDescripcion">&nbsp;</label>
-										<textarea id="descripcion" class="control"></textarea>
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="grupo botonera-crud">
-										<button type="button" id="nuevo" class="boton color-uno">
-											<span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
-										</button>
-										<button type="button" id="guardar" class="boton color-dos">
-											<span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
-										</button>
-										<button type="button" id="eliminar" class="boton color-cuatro">
-											<span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4 barra-derecha">
-							<div class="grupo">
-								<label data-contenido="wmSecciones">&nbsp;</label>
-								<ul id="listaSecciones" class="lista-select control"></ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
-	</div>
-	${require('../../interfaz/html/confirma-continuar.html')}
-	<div id="confirmaBorrar" class="emergente">
-		<div class="fondo"></div>
-		<div class="ventana">
-			<a href="#" class="cerrar">&#215;</a>
-			<div class="cuerpo">
-				<p data-contenido="wmSeBorraraSeccion">&nbsp;</p>
-				<br>
-				<div class="grupo">
-					<button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
-					<button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<span class="oculto">
-		<span class="okGuardado" data-contenido="wmOkGuardado"></span>
-	</span>
+  <noscript>javascript please</noscript>
+  <div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+  ${require('../../interfaz/html/barra-superior.html')}
+  <div class="container-fluid pagina">
+    <div class="row pagina">
+      <div class="col-sm-3 col-md-2 menu-lateral">
+        ${require('../../interfaz/html/menu-lateral.html')}
+      </div>
+      <main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+        <div id="contenidos">
+          <h1 data-contenido="wmSecciones">&nbsp;</h1>
+          <hr>
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="hidden" id="nombreUrl" value="">
+              <div class="row">
+                <div class="col-xs-8">
+                  <div class="grupo">
+                    <label data-contenido="wmNombre">&nbsp;</label>
+                    <input type="text" id="nombre" maxlength="80" class="control" required>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="grupo">
+                    <label>&nbsp;</label><br>
+                    <label class="control"><span id="totArtis">0</span>&nbsp;<span data-contenido="wmArticulos">&nbsp;</span></label>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="grupo">
+                    <label data-contenido="wmDescripcion">&nbsp;</label>
+                    <textarea id="descripcion" class="control"></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="grupo botonera-crud">
+                    <button type="button" id="nuevo" class="boton color-uno">
+                      <span class="ico">${require('../../interfaz/iconos/fa/solid/file.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmNuevo">&nbsp;</span>
+                    </button>
+                    <button type="button" id="guardar" class="boton color-dos">
+                      <span class="ico">${require('../../interfaz/iconos/fa/solid/save.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmGuardar">&nbsp;</span>
+                    </button>
+                    <button type="button" id="eliminar" class="boton color-cuatro">
+                      <span class="ico">${require('../../interfaz/iconos/fa/solid/times.svg')}</span>&nbsp;&nbsp;<span data-contenido="wmEliminar">&nbsp;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 barra-derecha">
+              <div class="grupo">
+                <label data-contenido="wmSecciones">&nbsp;</label>
+                <ul id="listaSecciones" class="lista-select control"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  ${require('../../interfaz/html/confirma-continuar.html')}
+  <div id="confirmaBorrar" class="emergente">
+    <div class="fondo"></div>
+    <div class="ventana">
+      <a href="#" class="cerrar">&#215;</a>
+      <div class="cuerpo">
+        <p data-contenido="wmSeBorraraSeccion">&nbsp;</p>
+        <br>
+        <div class="grupo">
+          <button class="cancelar boton color-dos" data-contenido="wmCancelar">&nbsp;</button>
+          <button class="confirmar boton color-cuatro" data-contenido="wmConfirmar">&nbsp;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="oculto">
+    <span class="okGuardado" data-contenido="wmOkGuardado"></span>
+  </span>
 </body>
 </html>

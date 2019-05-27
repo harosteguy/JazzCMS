@@ -1,163 +1,163 @@
 a.boton,
 button.boton {
-	display: inline-block;
-	margin: $boton-margin-top $boton-margin-right $boton-margin-bottom $boton-margin-left;
-	padding: $boton-padding-top $boton-padding-right $boton-padding-bottom $boton-padding-left;
-	line-height: $line-height;
-	border: $boton-border-width solid transparent;
-	border-radius: $boton-radius;
-	text-align: center;
-	vertical-align: middle;
-	touch-action: manipulation;
-	cursor: pointer;
-	background-image: none;
-	white-space: nowrap;
-	font-size: inherit;
-	color: $boton-color;
-	background-color: $boton-fondo;
-	&:hover,
-	&:focus,
-	&:active {
-		text-decoration: none;
-		outline: 0;
-		background-image: none;
-		color: $boton-color;
-		background-color: $boton-fondo-hover;
-	}
-	&[disabled] {
-		cursor: not-allowed;
-		background-color: $boton-fondo-disabled;
-	}
+  display: inline-block;
+  margin: $boton-margin-top $boton-margin-right $boton-margin-bottom $boton-margin-left;
+  padding: $boton-padding-top $boton-padding-right $boton-padding-bottom $boton-padding-left;
+  line-height: $line-height;
+  border: $boton-border-width solid transparent;
+  border-radius: $boton-radius;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  font-size: inherit;
+  color: $boton-color;
+  background-color: $boton-fondo;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    outline: 0;
+    background-image: none;
+    color: $boton-color;
+    background-color: $boton-fondo-hover;
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: $boton-fondo-disabled;
+  }
 }
 
 .grupo {
-	button.boton {
-		margin-bottom: 0;
-	}
+  button.boton {
+    margin-bottom: 0;
+  }
 }
 
 .botonera {
-	display: inline-block;
-	margin-right: 1em;
-	overflow: auto;
-	&:last-child {
-		margin-right: 0;
-	}
-	a.boton,
-	button.boton {
-		float: left;
-		margin: 0 0 0 1px;
-		border-radius: 0;
-		&:first-child {
-			margin-left: 0;
-			border-top-left-radius: $boton-radius;
-			border-bottom-left-radius: $boton-radius;
-		}
-		&:last-child {
-			border-top-right-radius: $boton-radius;
-			border-bottom-right-radius: $boton-radius;
-		}
-		&.activo {
-			background: $boton-fondo-hover;
-		}
-		&.color-uno.activo {
-			color: #fff;
-			background: $color-uno;
-		}
-		&.color-dos.activo {
-			color: #fff;
-			background: $color-dos;
-		}
-		&.color-tres.activo {
-			color: #fff;
-			background: $color-tres;
-		}
-		&.color-cuatro.activo {
-			color: #fff;
-			background: $color-cuatro;
-		}
-		* {
-			pointer-events: none;
-		}
-	}
+  display: inline-block;
+  margin-right: 1em;
+  overflow: auto;
+  &:last-child {
+    margin-right: 0;
+  }
+  a.boton,
+  button.boton {
+    float: left;
+    margin: 0 0 0 1px;
+    border-radius: 0;
+    &:first-child {
+      margin-left: 0;
+      border-top-left-radius: $boton-radius;
+      border-bottom-left-radius: $boton-radius;
+    }
+    &:last-child {
+      border-top-right-radius: $boton-radius;
+      border-bottom-right-radius: $boton-radius;
+    }
+    &.activo {
+      background: $boton-fondo-hover;
+    }
+    &.color-uno.activo {
+      color: #fff;
+      background: $color-uno;
+    }
+    &.color-dos.activo {
+      color: #fff;
+      background: $color-dos;
+    }
+    &.color-tres.activo {
+      color: #fff;
+      background: $color-tres;
+    }
+    &.color-cuatro.activo {
+      color: #fff;
+      background: $color-cuatro;
+    }
+    * {
+      pointer-events: none;
+    }
+  }
 }
 
 a.boton.color-uno,
 button.boton.color-uno {
-	color: $color-uno;
-	background-color: #fff;
-	border-color: $color-uno;
-	&:active,
-	&:focus,
-	&:hover {
-		color: #fff;
-		background-color: $color-uno;
-	}
-	&[disabled] {
-		&,
-		&:hover,
-		&:focus {
-			background-color: $boton-uno-fondo-disabled;
-		}
-	}
+  color: $color-uno;
+  background-color: #fff;
+  border-color: $color-uno;
+  &:active,
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: $color-uno;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $boton-uno-fondo-disabled;
+    }
+  }
 }
 
 a.boton.color-dos,
 button.boton.color-dos {
-	color: $color-dos;
-	background-color: #fff;
-	border-color: $color-dos;
-	&:active,
-	&:focus,
-	&:hover {
-		color: #fff;
-		background-color: $color-dos;
-	}
-	&[disabled] {
-		&,
-		&:hover,
-		&:focus {
-			background-color: $boton-dos-fondo-disabled;
-		}
-	}
+  color: $color-dos;
+  background-color: #fff;
+  border-color: $color-dos;
+  &:active,
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: $color-dos;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $boton-dos-fondo-disabled;
+    }
+  }
 }
 
 a.boton.color-tres,
 button.boton.color-tres {
-	color: $color-tres;
-	background-color: #fff;
-	border-color: $color-tres;
-	&:active,
-	&:focus,
-	&:hover {
-		color: #fff;
-		background-color: $color-tres;
-	}
-	&[disabled] {
-		&,
-		&:hover,
-		&:focus {
-			background-color: $boton-tres-fondo-disabled;
-		}
-	}
+  color: $color-tres;
+  background-color: #fff;
+  border-color: $color-tres;
+  &:active,
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: $color-tres;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $boton-tres-fondo-disabled;
+    }
+  }
 }
 
 a.boton.color-cuatro,
 button.boton.color-cuatro {
-	color: $color-cuatro;
-	background-color: #fff;
-	border-color: $color-cuatro;
-	&:active,
-	&:focus,
-	&:hover {
-		color: #fff;
-		background-color: $color-cuatro;
-	}
-	&[disabled] {
-		&,
-		&:hover,
-		&:focus {
-			background-color: $boton-cuatro-fondo-disabled;
-		}
-	}
+  color: $color-cuatro;
+  background-color: #fff;
+  border-color: $color-cuatro;
+  &:active,
+  &:focus,
+  &:hover {
+    color: #fff;
+    background-color: $color-cuatro;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $boton-cuatro-fondo-disabled;
+    }
+  }
 }

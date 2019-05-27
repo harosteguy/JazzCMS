@@ -118,13 +118,15 @@ module.exports = {
       // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
       language: 'en',
       additionalLanguages: ['es'],
-      outputDirectory: 'wm/interfaz/js/ckeditor5-translations',
+      outputDirectory: 'wm/interfaz/js/ckeditor5-translations'
+
       // Whether the build process should fail if an error occurs.
       // Defaults to `false`.
-      strict: true,
+      // strict: true,
+
       // Whether to log all warnings to the console.
       // Defaults to `false`.
-      verbose: true
+      // verbose: true
     }),
     //
     new HtmlWebpackPlugin({
