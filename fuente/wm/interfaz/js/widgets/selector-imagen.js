@@ -75,8 +75,11 @@ export default class SelectorImagen {
       // Escuchador de click
       let escuchaClick = evento => {
         if (evento.target.tagName === 'IMG') { // Resuelve con la imagen seleccionada
-          this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
-          this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+          // this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
+          // this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+          document.getElementById('selectorImagenModal').removeEventListener('click', escuchaClick) // Quita escuchadores
+          document.getElementById('selectorImagenModal').removeEventListener('change', escuchaInputImgChange)
+
           this.divSelector.remove() // Elimina selector del DOM
           document.getElementById('selectorImagenModal').classList.remove('visible')
           // Quita sufijo al nombre de la imagen '/img/foto-480.jpg' >--> '/img/foto.jpg'
@@ -84,8 +87,11 @@ export default class SelectorImagen {
           //
           resolve([ imgSrc, 'existente' ])
         } else if (evento.target.classList.contains('cerrar')) { // Cierra el widget
-          this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
-          this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+          // this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
+          // this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+          document.getElementById('selectorImagenModal').removeEventListener('click', escuchaClick) // Quita escuchadores
+          document.getElementById('selectorImagenModal').removeEventListener('change', escuchaInputImgChange)
+
           this.divSelector.remove() // Elimina selector del DOM
           document.getElementById('selectorImagenModal').classList.remove('visible')
           resolve([ '', '' ])
@@ -109,13 +115,15 @@ export default class SelectorImagen {
         inputImagen.style.pointerEvents = 'none' // Deshabilita eventos
         //
         let req = new window.XMLHttpRequest()
-
         let formData = new window.FormData()
         formData.append('imagen', inputImagen.files[0])
         req.onreadystatechange = () => {
           if (req.readyState === 4) {
-            this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
-            this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+            // this.divSelector.removeEventListener('click', escuchaClick) // Quita escuchadores
+            // this.divSelector.querySelector('.inputImagen').removeEventListener('change', escuchaInputImgChange)
+            document.getElementById('selectorImagenModal').removeEventListener('click', escuchaClick) // Quita escuchadores
+            document.getElementById('selectorImagenModal').removeEventListener('change', escuchaInputImgChange)
+
             this.divSelector.remove() // Elimina selector del DOM
             document.getElementById('selectorImagenModal').classList.remove('visible')
             if (req.status === 200) {
