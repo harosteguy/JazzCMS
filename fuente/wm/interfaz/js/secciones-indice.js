@@ -39,7 +39,7 @@ comun.mostrarUsuario().then(usr => {
     document.querySelector('.grupo.autor').classList.remove('oculto')
   } else {
     // Comprueba si es un autor activo
-    let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+    let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
     let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
     window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
@@ -57,22 +57,22 @@ comun.mostrarUsuario().then(usr => {
         }
       })
       .catch(error => {
-        window.localStorage.removeItem('uid')
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('nombre')
-        window.localStorage.removeItem('apellido')
-        window.localStorage.removeItem('esAdmin')
+        window.sessionStorage.removeItem('uid')
+        window.sessionStorage.removeItem('token')
+        window.sessionStorage.removeItem('nombre')
+        window.sessionStorage.removeItem('apellido')
+        window.sessionStorage.removeItem('esAdmin')
         window.location.href = `/${idiomaUrl}`
         console.log(error, 1)
       })
   }
 })
   .catch(error => {
-    window.localStorage.removeItem('uid')
-    window.localStorage.removeItem('token')
-    window.localStorage.removeItem('nombre')
-    window.localStorage.removeItem('apellido')
-    window.localStorage.removeItem('esAdmin')
+    window.sessionStorage.removeItem('uid')
+    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('nombre')
+    window.sessionStorage.removeItem('apellido')
+    window.sessionStorage.removeItem('esAdmin')
     window.location.href = `/${idiomaUrl}wm/login/`
     console.log(error, 2)
   })
@@ -103,7 +103,7 @@ function hacer () {
     dateFormat: 'd/m/Y',
     enableSeconds: false
   })
-  let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
   let listaSecciones, blogBase
 
@@ -137,7 +137,7 @@ function hacer () {
         selCat.appendChild(optCat)
       })
       // Autores para el admin
-      if (window.localStorage.getItem('esAdmin') === '1') {
+      if (window.sessionStorage.getItem('esAdmin') === '1') {
         return window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores?blogBase=${blogBase}`, { method: 'get', headers: reqHeaders })
       }
       comun.esperaAjax(false, 'secciones')
@@ -186,7 +186,7 @@ function hacer () {
           selCat.appendChild(optCat)
         })
         // Autores para el admin
-        if (window.localStorage.getItem('esAdmin') === '1') {
+        if (window.sessionStorage.getItem('esAdmin') === '1') {
           return window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores?blogBase=${claveValor.clave}`, { method: 'get', headers: reqHeaders })
         }
       })

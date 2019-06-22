@@ -29,7 +29,7 @@ export default class SelectorImagen {
     this.titulo = titulo
     this.url = url
     this.idioma = obtenerIdiomaUrl()
-    this.headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+    this.headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
     this.reqHeaders = { 'Authorization': this.headerAuth, 'Accept-Language': this.idioma }
     this.confirmarEliminar = confirmarEliminar
     this.antesDeBorrar = divImagen => Promise.resolve(true) // Función antes de borrar debe retornar una promesa que se resuelva con true para confirmar el borrado

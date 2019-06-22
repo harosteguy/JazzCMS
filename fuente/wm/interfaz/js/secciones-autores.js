@@ -75,7 +75,7 @@ function hacer () {
   }
   checkbox.iniciar()// Checkboxes personalizados
 
-  let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
 
   // Obtiene autores

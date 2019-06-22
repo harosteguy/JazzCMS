@@ -32,7 +32,7 @@ comun.mostrarUsuario().then(usr => {
     hacer(usr)
   } else {
     // Comprueba si es un autor activo
-    let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+    let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
     let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
     window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
@@ -50,22 +50,22 @@ comun.mostrarUsuario().then(usr => {
       })
       .catch(error => {
         console.error(error)
-        window.localStorage.removeItem('uid')
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('nombre')
-        window.localStorage.removeItem('apellido')
-        window.localStorage.removeItem('esAdmin')
+        window.sessionStorage.removeItem('uid')
+        window.sessionStorage.removeItem('token')
+        window.sessionStorage.removeItem('nombre')
+        window.sessionStorage.removeItem('apellido')
+        window.sessionStorage.removeItem('esAdmin')
         window.location.href = `/${idiomaUrl}`
       })
   }
 })
   .catch(error => {
     console.error(error)
-    window.localStorage.removeItem('uid')
-    window.localStorage.removeItem('token')
-    window.localStorage.removeItem('nombre')
-    window.localStorage.removeItem('apellido')
-    window.localStorage.removeItem('esAdmin')
+    window.sessionStorage.removeItem('uid')
+    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('nombre')
+    window.sessionStorage.removeItem('apellido')
+    window.sessionStorage.removeItem('esAdmin')
     window.location.href = `/${idiomaUrl}wm/login/`
   })
 

@@ -52,11 +52,11 @@ document.getElementById('frmLogin').addEventListener('submit', e => {
     .then(usr => {
       if (usr.error) throw new Error(usr.error)
 
-      window.localStorage.setItem('uid', usr.id)
-      window.localStorage.setItem('token', usr.token)
-      window.localStorage.setItem('nombre', usr.nombre)
-      window.localStorage.setItem('apellido', usr.apellido)
-      window.localStorage.setItem('esAdmin', usr.esAdmin)
+      window.sessionStorage.setItem('uid', usr.id)
+      window.sessionStorage.setItem('token', usr.token)
+      window.sessionStorage.setItem('nombre', usr.nombre)
+      window.sessionStorage.setItem('apellido', usr.apellido)
+      window.sessionStorage.setItem('esAdmin', usr.esAdmin)
       window.location.href = `/${idiomaUrl}wm/`
     })
     .catch(error => {

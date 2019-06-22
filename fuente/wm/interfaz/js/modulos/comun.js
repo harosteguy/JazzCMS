@@ -22,7 +22,7 @@ import { padIzquierdo } from './utiles'
 import { autorizacion } from './usuario'
 import { emergente } from './emergente'
 
-export let urlBaseApi = '' // Dejar vacío si es igual a la URL de la aplicación
+export let urlBaseApi = 'https://jazzcms.com' // Dejar vacío si es igual a la URL de la aplicación
 
 export let setIdiomas = ['es', 'en'] // El primero es el idioma por defecto
 
@@ -42,11 +42,11 @@ export function mostrarUsuario () {
       //
       document.getElementById('desconectarse').addEventListener('click', e => {
         e.preventDefault()
-        window.localStorage.removeItem('uid')
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('nombre')
-        window.localStorage.removeItem('apellido')
-        window.localStorage.removeItem('esAdmin')
+        window.sessionStorage.removeItem('uid')
+        window.sessionStorage.removeItem('token')
+        window.sessionStorage.removeItem('nombre')
+        window.sessionStorage.removeItem('apellido')
+        window.sessionStorage.removeItem('esAdmin')
         //
         window.location.href = `/${obtenerIdiomaUrl()}/`
       })
@@ -156,7 +156,7 @@ export function continuarSinGuardar (dataOriginal, dataActual) {
 export let menuLateral = {
   iniciar: () => {
     let itemsMenu
-    if (window.localStorage.getItem('esAdmin') === '1') {
+    if (window.sessionStorage.getItem('esAdmin') === '1') {
       itemsMenu = ['inicio', 'irAlSitio', 'secciones-indice', 'secciones-articulo', 'secciones-categorias', 'secciones-secciones', 'secciones-autores', 'contenidos']
     } else {
       itemsMenu = ['inicio', 'irAlSitio', 'secciones-indice', 'secciones-articulo']

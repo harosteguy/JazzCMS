@@ -22,10 +22,10 @@ import { urlBaseApi } from './comun'
 
 export function autorizacion () {
   return new Promise((resolve, reject) => {
-    if (window.localStorage.getItem('uid') && window.localStorage.getItem('token')) {
+    if (window.sessionStorage.getItem('uid') && window.sessionStorage.getItem('token')) {
       let htmlLang = document.getElementsByTagName('html')[0].getAttribute('lang') === 'en' ? 'en' : 'es'
       let reqHeaders = {
-        'Authorization': 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token')),
+        'Authorization': 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token')),
         'Accept-Language': htmlLang
       }
       window.fetch(`${urlBaseApi}/apis/usuarios/v1/autorizacion`, { method: 'get', headers: reqHeaders })

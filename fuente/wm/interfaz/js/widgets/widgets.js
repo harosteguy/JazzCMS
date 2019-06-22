@@ -40,7 +40,7 @@ function colores (cantidad) {
 }
 
 export function wdSecciones () {
-  let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': obtenerIdiomaUrl() }
   window.fetch(`${urlBaseApi}/apis/wm-articulus/v1/blogs/?incNumArticulos=1`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
@@ -98,7 +98,7 @@ export function wdSecciones () {
 }
 
 export function wdAutores () {
-  let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': obtenerIdiomaUrl() }
   window.fetch(`${urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())

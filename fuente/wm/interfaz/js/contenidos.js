@@ -88,7 +88,7 @@ function hacer () {
     dataOriginal = recogerDatos()
   }).catch(error => { console.error(error) })
   //
-  let headerAuth = 'Basic ' + window.btoa(window.localStorage.getItem('uid') + ':' + window.localStorage.getItem('token'))
+  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
   let listaContenidos
   // Obtiene lista de IDs de contenido
