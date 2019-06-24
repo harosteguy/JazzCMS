@@ -10,7 +10,9 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 module.exports = {
   entry: {
     'pagina-ejemplo': './fuente/wm/interfaz/js/pagina-ejemplo.js',
-    'login': './fuente/wm/interfaz/js/login.js',
+    'usuario-login': './fuente/wm/interfaz/js/usuario-login.js',
+    'usuario-clave': './fuente/wm/interfaz/js/usuario-clave.js',
+    'usuario-clave-nueva': './fuente/wm/interfaz/js/usuario-clave-nueva.js',
     'inicio': './fuente/wm/interfaz/js/inicio.js',
     'secciones-indice': './fuente/wm/interfaz/js/secciones-indice.js',
     'secciones-articulo': './fuente/wm/interfaz/js/secciones-articulo.js',
@@ -137,9 +139,21 @@ module.exports = {
     }),
     //
     new HtmlWebpackPlugin({
-      chunks: [ 'login' ],
-      filename: path.resolve(__dirname, 'app/wm/login/index.html'),
-      template: path.resolve(__dirname, 'fuente/wm/login/index.html'),
+      chunks: [ 'usuario-login' ],
+      filename: path.resolve(__dirname, 'app/wm/usuario/login/index.html'),
+      template: path.resolve(__dirname, 'fuente/wm/usuario/login/index.html'),
+      hash: true
+    }),
+    new HtmlWebpackPlugin({
+      chunks: [ 'usuario-clave' ],
+      filename: path.resolve(__dirname, 'app/wm/usuario/clave/index.html'),
+      template: path.resolve(__dirname, 'fuente/wm/usuario/clave/index.html'),
+      hash: true
+    }),
+    new HtmlWebpackPlugin({
+      chunks: [ 'usuario-clave-nueva' ],
+      filename: path.resolve(__dirname, 'app/wm/usuario/clave/nueva/index.html'),
+      template: path.resolve(__dirname, 'fuente/wm/usuario/clave/nueva/index.html'),
       hash: true
     }),
     new HtmlWebpackPlugin({

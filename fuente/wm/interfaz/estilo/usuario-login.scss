@@ -1,0 +1,32 @@
+@import './imports/comun';
+
+body {
+  background: $color-uno;
+  #contenidos {
+    background: $color-uno;
+    box-shadow: none;
+    #frmLogin {
+      display: block;
+      overflow: auto;
+      margin: 12% auto 0;
+      width: 100%;
+      max-width: 400px;
+      padding: 36px 36px 26px;
+      background: $color-uno-claro;
+      .pie {
+        overflow: auto;
+        .enviar {
+          float: left;
+        }
+        .olvidasteClave {
+          float: right;
+          padding: 0.4em;
+          color: $color-uno-oscuro;
+          &:hover {
+            color: $color-uno;
+          }
+        }
+      }
+    }
+  }
+}

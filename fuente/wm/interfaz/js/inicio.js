@@ -66,7 +66,7 @@ comun.mostrarUsuario().then(usr => {
     window.sessionStorage.removeItem('nombre')
     window.sessionStorage.removeItem('apellido')
     window.sessionStorage.removeItem('esAdmin')
-    window.location.href = `/${idiomaUrl}wm/login/`
+    window.location.href = `/${idiomaUrl}wm/usuario/login/`
   })
 
 //

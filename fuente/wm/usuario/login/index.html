@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="[[idioma]]">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JazzCMS</title>
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <noscript>javascript please</noscript>
+  <div id="capaEspera" data-procesos='["cargapagina"]' class="visible"></div>
+  ${require('../../interfaz/html/barra-superior.html')}
+  <div class="container-fluid">
+    <div class="row">
+      <main class="col-sm-12">
+        <div id="contenidos">
+          <form id="frmLogin">
+            <h2 data-contenido="wmLogin">&nbsp;</h2>
+            <br>
+            <div class="grupo">
+              <input type="email" name="email" maxlength="40" class="control" autocomplete="username" data-contenido="wmEmail" autofocus>
+            </div>
+            <div class="grupo">
+              <input type="password" name="clave" maxlength="40" class="control" autocomplete="current-password" data-contenido="wmClave">
+            </div>
+            <div class="grupo pie">
+              <br><button type="submit" class="boton color-uno enviar" data-contenido="wmAcceder">&nbsp;</button>
+              <a class="olvidasteClave" href="/[[idiomaUrl]]wm/usuario/clave/" data-contenido="wmOlvidasteClave">&nbsp;</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
