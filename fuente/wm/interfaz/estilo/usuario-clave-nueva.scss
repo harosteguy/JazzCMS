@@ -2,6 +2,9 @@
 
 body {
   background: $color-uno;
+  .barra-superior .hamburguesa {
+    display: none;
+  }
   #contenidos {
     background: $color-uno;
     box-shadow: none;

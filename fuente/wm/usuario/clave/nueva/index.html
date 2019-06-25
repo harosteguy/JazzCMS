@@ -18,11 +18,12 @@
           <form id="frmClaves">
             <h2 data-contenido="wmNuevaClave">&nbsp;</h2>
             <br>
+            <input type="text" name="usuario" autocomplete="username" class="oculto">
             <div class="grupo">
-              <input type="password" name="clave1" maxlength="40" class="control" data-contenido="wmClave" autofocus>
+              <input type="password" name="clave1" maxlength="40" class="control" autocomplete="new-password" data-contenido="wmClave" autofocus>
             </div>
             <div class="grupo">
-              <input type="password" name="clave2" maxlength="40" class="control" data-contenido="wmRepetirClave">
+              <input type="password" name="clave2" maxlength="40" class="control" autocomplete="new-password" data-contenido="wmRepetirClave">
             </div>
             <div class="grupo">
               <br><button type="submit" class="boton color-uno enviar" data-contenido="wmEnviar">&nbsp;</button>
