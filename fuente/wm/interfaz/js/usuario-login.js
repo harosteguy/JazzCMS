@@ -60,7 +60,8 @@ document.getElementById('frmLogin').addEventListener('submit', e => {
       window.location.href = `/${idiomaUrl}wm/`
     })
     .catch(error => {
-      tostada(error.message, 4, 'color-cuatro')
+      tostada(document.querySelector('.algoSalioMal').textContent, 4, 'color-cuatro')
+      console.error(error)
       comun.esperaAjax(false, 'login')
     })
 })

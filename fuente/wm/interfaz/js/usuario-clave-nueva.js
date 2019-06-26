@@ -48,7 +48,13 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
     clave1: frmClaves.elements['clave1'].value,
     clave2: frmClaves.elements['clave2'].value
   }
+  if (datos.clave1 !== datos.clave2) {
+    tostada(document.querySelector('.clavesNoIguales').textContent, 4, 'color-cuatro')
+    comun.esperaAjax(false, 'clave')
+    return
+  }
   //
+  let resp
   window.fetch(comun.urlBaseApi + '/apis/usuarios/v1/nuevaClave',
     {
       method: 'put',
@@ -56,6 +62,7 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
       body: JSON.stringify(datos)
     })
     .then(respuesta => {
+      resp = respuesta
       return respuesta.json()
     })
     .then(usr => {
@@ -69,7 +76,14 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
       window.location.href = `/${idiomaUrl}wm/`
     })
     .catch(error => {
-      tostada(error.message, 4, 'color-cuatro')
+      if (resp.status === 400) {
+        tostada(document.querySelector('.errClavesToken').textContent, 4, 'color-cuatro')
+      } else if (resp.status === 404) {
+        tostada(document.querySelector('.tokenNoExiste').textContent, 4, 'color-cuatro')
+      } else if (resp.status !== 200) {
+        tostada(document.querySelector('.algoSalioMal').textContent, 4, 'color-cuatro')
+      }
+      console.error(error.message)
       comun.esperaAjax(false, 'clave')
     })
 })

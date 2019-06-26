@@ -44,6 +44,7 @@ document.getElementById('frmCorreo').addEventListener('submit', e => {
   const frmCorreo = document.getElementById('frmCorreo')
   const reqHeaders = { 'Accept-Language': idioma }
   //
+  let resp
   window.fetch(comun.urlBaseApi + '/apis/usuarios/v1/emailClave',
     {
       method: 'post',
@@ -51,16 +52,25 @@ document.getElementById('frmCorreo').addEventListener('submit', e => {
       body: JSON.stringify({ email: frmCorreo.elements['email'].value })
     })
     .then(respuesta => {
+      resp = respuesta
       return respuesta.json()
     })
     .then(usr => {
       if (usr.error) throw new Error(usr.error)
+
       comun.esperaAjax(false, 'clave')
       tostada(document.querySelector('.avisoEmailClaveOk').textContent, 8, 'color-dos')
       frmCorreo.elements['email'].value = ''
     })
     .catch(error => {
-      tostada(error.message, 4, 'color-cuatro')
+      if (resp.status === 400) {
+        tostada(document.querySelector('.errCorreo').textContent, 4, 'color-cuatro')
+      } else if (resp.status === 404) {
+        tostada(document.querySelector('.usrNoExiste').textContent, 4, 'color-cuatro')
+      } else if (resp.status !== 200) {
+        tostada(document.querySelector('.algoSalioMal').textContent, 4, 'color-cuatro')
+      }
+      console.error(error.message)
       comun.esperaAjax(false, 'clave')
     })
 })
