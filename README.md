@@ -1,6 +1,8 @@
 # JazzCMS
 
-Aplicación web para la gestión de contenidos de aplicaciones.
+JazzCMS + JazzAPI = Headles CMS
+
+JazzCMS es una aplicación estática, ligera y veloz para gestionar contenidos.
 
 ## Tabla de contenidos
 
@@ -23,7 +25,29 @@ Aplicación web para la gestión de contenidos de aplicaciones.
 ---
 ## Configuración
 
-- No requiere si el dominio de las APIs es el mismo que el de la aplicación.
+#### Reglas de reescritura de URL
+
+En el archivo de configuración de Nginx de deben agregar las siguientes reglas dentro del bloque server:
+````
+rewrite ^(/wm/secciones/articulo/)([a-z0-9-]+)/([a-z0-9-]+)$ $1 last;
+rewrite ^/(es|en)(/wm/secciones/articulo/)([a-z0-9-]+)/([a-z0-9-]+)$ $2 last;
+rewrite ^(/wm/usuario/clave/nueva/)([a-f0-9]+)$ $1 last;
+rewrite ^/(es|en)(/wm/usuario/clave/nueva/)([a-f0-9]+)$ $2 last;
+rewrite ^(/es|/en)(/)*(.*)$ /$3 last;
+````
+Basicamente se ignora lo que continúe a "/wm/secciones/articulo/" y a "/wm/usuario/clave/nueva/", y en todos los casos el idioma.
+
+Usar el equivalente para otros servidores.
+
+#### URL base de las APIs
+Si el URL base de las APIs es el mismo que el de la aplicación, no se requiere configuración.
+
+En caso de que las APIs estuvieran alojadas en otra dirección, debe indicarse en la variable urlBaseApi del archivo /fuente/wm/interfaz/js/modulos/comun.js
+
+En el ejemplo de abajo se muestra como quedaría la línea. Finalmente se debe reconstruir la distribución.
+````javascript
+export let urlBaseApi = 'https://direcciondelasapis.com' // Dejar vacío si es igual a la URL de la aplicación
+````
 
 ---
 ## Uso
