@@ -20,7 +20,7 @@
 
 // En webpack.config.js se excluye este archivo de babel-loader para poder extender la función Plugin sin error
 //* ************************************************************************************************************
-import { urlBaseApi, obtenerIdiomaUrl } from './comun'
+import { getUrlBaseApi, obtenerIdiomaUrl } from './comun'
 import tostada from '../widgets/tostada'
 import SelectorImagen from '../widgets/selector-imagen'
 
@@ -76,7 +76,7 @@ class ImagenDeArticulo extends Plugin {
         if (partes.length === 6 || partes.length === 7) { // URL sin y con idioma
           let artiBase = partes[ partes.length - 1 ]
           let blogBase = partes[ partes.length - 2 ]
-          let url = `${urlBaseApi}/apis/wm-articulus/v1/blogs/${blogBase}/articulos/${artiBase}/imagenes`
+          let url = `${getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${blogBase}/articulos/${artiBase}/imagenes`
           // Muestra selector de imagen
           let selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
           selecImagen.mostrar().then(([ urlImg, estado ]) => {
@@ -153,7 +153,7 @@ class ImagenDeCategoria extends Plugin {
         let etiqueta = editor.sourceElement.previousElementSibling
         let titulo = etiqueta.tagName === 'LABEL' ? etiqueta.textContent : ''
         // Muestra selector de imagen
-        let url = `${urlBaseApi}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
+        let url = `${getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
         let selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
         selecImagen.mostrar().then(([ urlImg, estado ]) => {
           if (estado === 'existente' || estado === 'nueva') {
@@ -225,7 +225,7 @@ class ImagenDeContenido extends Plugin {
         let etiqueta = editor.sourceElement.previousElementSibling
         let titulo = etiqueta.tagName === 'LABEL' ? etiqueta.textContent : ''
         // Muestra selector de imagen
-        let selecImagen = new SelectorImagen(titulo, `${urlBaseApi}/apis/wm-imagen/v1/contenidos`)
+        let selecImagen = new SelectorImagen(titulo, `${getUrlBaseApi()}/apis/wm-imagen/v1/contenidos`)
         selecImagen.mostrar().then(([ urlImg, estado ]) => {
           if (estado === 'existente' || estado === 'nueva') {
             // Muestra imagen en el editor

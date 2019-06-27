@@ -34,7 +34,7 @@ comun.mostrarUsuario().then(usr => {
     // Comprueba si es un autor activo
     let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
     let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
-    window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200) {
           throw new Error('El status no es 200')

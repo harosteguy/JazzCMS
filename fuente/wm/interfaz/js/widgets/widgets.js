@@ -18,7 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { urlBaseApi, obtenerIdiomaUrl } from '../modulos/comun'
+import { getUrlBaseApi, obtenerIdiomaUrl } from '../modulos/comun'
 
 /*
 Hay que incluír la siguiente línea;
@@ -42,7 +42,7 @@ function colores (cantidad) {
 export function wdSecciones () {
   let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': obtenerIdiomaUrl() }
-  window.fetch(`${urlBaseApi}/apis/wm-articulus/v1/blogs/?incNumArticulos=1`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${getUrlBaseApi()}/apis/wm-articulus/v1/blogs/?incNumArticulos=1`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(secciones => {
       if (secciones.length > 0) {
@@ -100,7 +100,7 @@ export function wdSecciones () {
 export function wdAutores () {
   let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': obtenerIdiomaUrl() }
-  window.fetch(`${urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(autores => {
       if (autores.length > 0) {

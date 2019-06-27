@@ -18,7 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { urlBaseApi, obtenerIdiomaUrl } from './comun'
+import { urlApiPropia, obtenerIdiomaUrl } from './comun'
 
 export default function chorrear (callback) {
   // Pone ids de contenido en un array sin repetir
@@ -37,7 +37,7 @@ export default function chorrear (callback) {
   let chorroIds = idsCon.toString() // Lista de ids separados por comas
   if (chorroIds !== '') { // Si hay algún id en la lista
     let idioma = obtenerIdiomaUrl()
-    window.fetch(`${urlBaseApi}/apis/chorro/v1/?chorro=${chorroIds}`, { method: 'get', headers: { 'Accept-Language': idioma } })
+    window.fetch(`${urlApiPropia}/apis/chorro/v1/?chorro=${chorroIds}`, { method: 'get', headers: { 'Accept-Language': idioma } })
       .then(respuesta => {
         if (respuesta.status !== 200) throw new Error('Error descargando contenidos')
         return respuesta

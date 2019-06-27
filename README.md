@@ -2,7 +2,7 @@
 
 JazzCMS + JazzAPI = Headles CMS
 
-JazzCMS es una aplicación estática, ligera y veloz para gestionar contenidos.
+JazzCMS es una aplicación web estática, ligera y veloz para gestionar contenidos.
 
 ## Tabla de contenidos
 
@@ -38,16 +38,6 @@ rewrite ^(/es|/en)(/)*(.*)$ /$3 last;
 Basicamente se ignora lo que continúe a "/wm/secciones/articulo/" y a "/wm/usuario/clave/nueva/", y en todos los casos el idioma.
 
 Usar el equivalente para otros servidores.
-
-#### URL base de las APIs
-Si el URL base de las APIs es el mismo que el de la aplicación, no se requiere configuración.
-
-En caso de que las APIs estuvieran alojadas en otra dirección, debe indicarse en la variable urlBaseApi del archivo /fuente/wm/interfaz/js/modulos/comun.js
-
-En el ejemplo de abajo se muestra como quedaría la línea. Finalmente se debe reconstruir la distribución.
-````javascript
-export let urlBaseApi = 'https://direcciondelasapis.com' // Dejar vacío si es igual a la URL de la aplicación
-````
 
 ---
 ## Uso

@@ -93,7 +93,7 @@ function hacer () {
   let listaContenidos
   // Obtiene lista de IDs de contenido
   comun.esperaAjax(true, 'listaIds')
-  window.fetch(`${comun.urlBaseApi}/apis/wm-chorro/v1/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-chorro/v1/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(idsConte => {
       if (idsConte.length > 0) {
@@ -125,7 +125,7 @@ function hacer () {
   //
   function mostrarContenido (claveValor) {
     comun.esperaAjax(true, 'obtieneConte')
-    window.fetch(`${comun.urlBaseApi}/apis/wm-chorro/v1/${claveValor.clave}`, { method: 'get', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-chorro/v1/${claveValor.clave}`, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(contenido => {
         if (contenido.error) {
@@ -163,7 +163,7 @@ function hacer () {
     comun.esperaAjax(true, 'guardaConte')
     let idOriginal = document.getElementById('idOriginal').value
     let metodo = idOriginal === '' ? 'post' : 'put'
-    let url = `${comun.urlBaseApi}/apis/wm-chorro/v1/`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-chorro/v1/`
     url += metodo === 'put' ? idOriginal : ''
     let contenido = recogerDatos()
     //
@@ -214,7 +214,7 @@ function hacer () {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraConte')
     let idOriginal = document.getElementById('idOriginal').value
-    window.fetch(`${comun.urlBaseApi}/apis/wm-chorro/v1/${idOriginal}`, {
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-chorro/v1/${idOriginal}`, {
       method: 'delete',
       headers: reqHeaders
     })

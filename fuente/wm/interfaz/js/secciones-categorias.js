@@ -80,7 +80,7 @@ function hacer () {
 
   // Obtiene secciones
   comun.esperaAjax(true, 'secciones')
-  window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(secciones => {
       if (secciones.length > 0) {
@@ -102,7 +102,7 @@ function hacer () {
   // Obtener categorías de una sección
   function obtenerCategorias (seccion) {
     comun.esperaAjax(true, 'obtenerCat')
-    window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${seccion}/categorias`, { method: 'get', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${seccion}/categorias`, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(listaCateg => {
         listaCategorias.vaciar()
@@ -171,7 +171,7 @@ function hacer () {
   //
   function mostrarCategoria (claveValor) {
     comun.esperaAjax(true, 'obtieneCat')
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${claveValor.clave}/?incNumArticulos=1`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${claveValor.clave}/?incNumArticulos=1`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(cat => {
@@ -212,7 +212,7 @@ function hacer () {
     // Título para el selector de imagen
     let titulo = document.querySelector('.imgPrincipal label').textContent
     // Muestra selector de imagen
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
     let selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
     selecImagen.mostrar().then(([ urlImg, estado ]) => {
       if (estado === 'existente' || estado === 'nueva') {
@@ -289,7 +289,7 @@ function hacer () {
     //
     let nombreBase = document.getElementById('nombreBase').value
     let metodo = (nombreBase === '') ? 'post' : 'put'
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/`
     url += metodo === 'put' ? nombreBase : ''
     let cat = recogerDatos()
     dataOriginal = cat // Guarda para verificar si se modificaron datos al abandonar la página
@@ -301,7 +301,7 @@ function hacer () {
           throw new Error(resCat.error)
         } else {
           // Recupera categoría guardada
-          return window.fetch(comun.urlBaseApi + resCat.url, { method: 'get', headers: reqHeaders })
+          return window.fetch(comun.getUrlBaseApi() + resCat.url, { method: 'get', headers: reqHeaders })
         }
       })
       .then(respuesta => respuesta.json())
@@ -333,7 +333,7 @@ function hacer () {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraCat')
     let nombreBase = document.getElementById('nombreBase').value
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${nombreBase}`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${nombreBase}`
     window.fetch(url, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()

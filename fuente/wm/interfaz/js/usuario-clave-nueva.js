@@ -55,7 +55,7 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
   }
   //
   let resp
-  window.fetch(comun.urlBaseApi + '/apis/usuarios/v1/nuevaClave',
+  window.fetch(comun.getUrlBaseApi() + '/apis/usuarios/v1/nuevaClave',
     {
       method: 'put',
       headers: reqHeaders,

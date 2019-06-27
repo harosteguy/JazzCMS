@@ -41,7 +41,7 @@ comun.mostrarUsuario().then(usr => {
     // Comprueba si es un autor activo
     let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
     let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
-    window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200) {
           throw new Error('El status no es 200')
@@ -109,7 +109,7 @@ function hacer () {
 
   // Obtiene secciones
   comun.esperaAjax(true, 'secciones')
-  window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(secciones => {
       if (secciones.length > 0) {
@@ -121,7 +121,7 @@ function hacer () {
         listar()
         // Obtiene categorías de la sección
         blogBase = listaSecciones.seleccionado().clave
-        return window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${blogBase}/categorias`, { method: 'get', headers: reqHeaders })
+        return window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${blogBase}/categorias`, { method: 'get', headers: reqHeaders })
       } else { // El usuario no tiene permisos en ningún blog o no hay secciones cargadas
         window.location.href = `/${idiomaUrl}wm`
       }
@@ -138,7 +138,7 @@ function hacer () {
       })
       // Autores para el admin
       if (window.sessionStorage.getItem('esAdmin') === '1') {
-        return window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores?blogBase=${blogBase}`, { method: 'get', headers: reqHeaders })
+        return window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores?blogBase=${blogBase}`, { method: 'get', headers: reqHeaders })
       }
       comun.esperaAjax(false, 'secciones')
     })
@@ -169,7 +169,7 @@ function hacer () {
     document.querySelector('h1 .seccion').textContent = '"' + claveValor.valor + '"'
     document.querySelector('.buscador .control').placeholder = document.querySelector('.buscarEn').textContent + ' "' + claveValor.valor + '"'
     // Actualiza select de categorías
-    window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${claveValor.clave}/categorias`, { method: 'get', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${claveValor.clave}/categorias`, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(categorias => {
         let selCat = document.getElementById('filtroCategoria')
@@ -187,7 +187,7 @@ function hacer () {
         })
         // Autores para el admin
         if (window.sessionStorage.getItem('esAdmin') === '1') {
-          return window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores?blogBase=${claveValor.clave}`, { method: 'get', headers: reqHeaders })
+          return window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores?blogBase=${claveValor.clave}`, { method: 'get', headers: reqHeaders })
         }
       })
       .then(respuesta => respuesta.json())
@@ -239,7 +239,7 @@ function hacer () {
           } else {
             document.querySelector('#listaArtis .verMas').classList.add('oculto')
           }
-          document.querySelector('#listaArtis .verMas').dataset.url = comun.urlBaseApi + artis.paginacion.siguiente
+          document.querySelector('#listaArtis .verMas').dataset.url = comun.getUrlBaseApi() + artis.paginacion.siguiente
           //
           document.getElementById('totResultados').textContent = artis.paginacion.articulos
           comun.esperaAjax(false, 'listarArtis')
@@ -302,7 +302,7 @@ function hacer () {
     if (blogBase) {
       let ordenCampo = botonera.leer(document.getElementById('ordenCampo')) === 'alfa' ? 'alfa' : 'crono'
       let ordenDir = botonera.leer(document.getElementById('ordenDir')) === 'asc' ? 'asc' : 'desc'
-      let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${blogBase}/articulos/?orden=${ordenCampo}&ordenDir=${ordenDir}&porPag=20`
+      let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${blogBase}/articulos/?orden=${ordenCampo}&ordenDir=${ordenDir}&porPag=20`
       //
       let textoBusca = document.querySelector('.buscador .texto').value
       if (textoBusca !== '') {

@@ -19,10 +19,13 @@
             <h2 data-contenido="wmLogin">&nbsp;</h2>
             <br>
             <div class="grupo">
-              <input type="email" name="email" maxlength="40" class="control" autocomplete="username" data-contenido="wmEmail" autofocus>
+              <input type="url" name="urlApis" maxlength="100" class="control" data-contenido="wmUrlApis">
             </div>
             <div class="grupo">
-              <input type="password" name="clave" maxlength="40" class="control" autocomplete="current-password" data-contenido="wmClave">
+              <input type="email" name="email" maxlength="40" class="control" autocomplete="username" data-contenido="wmEmail" autofocus required>
+            </div>
+            <div class="grupo">
+              <input type="password" name="clave" maxlength="40" class="control" autocomplete="current-password" data-contenido="wmClave" required>
             </div>
             <div class="grupo pie">
               <br><button type="submit" class="boton color-uno enviar" data-contenido="wmAcceder">&nbsp;</button>

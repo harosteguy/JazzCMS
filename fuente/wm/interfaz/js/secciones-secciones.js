@@ -79,7 +79,7 @@ function hacer () {
 
   // Obtiene secciones
   comun.esperaAjax(true, 'secciones')
-  window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(secciones => {
       if (secciones.length > 0) {
@@ -113,7 +113,7 @@ function hacer () {
   //
   function mostrarSeccion (claveValor) {
     comun.esperaAjax(true, 'obtieneSeccion')
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${claveValor.clave}/?incNumArticulos=1`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${claveValor.clave}/?incNumArticulos=1`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(seccion => {
@@ -148,7 +148,7 @@ function hacer () {
     comun.esperaAjax(true, 'guardaSeccion')
     let nombreUrl = document.getElementById('nombreUrl').value
     let metodo = (nombreUrl === '') ? 'post' : 'put'
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`
     url += metodo === 'put' ? nombreUrl : ''
     let seccion = recogerDatos()
     dataOriginal = seccion // Guarda para verificar si se modificaron datos al abandonar la página
@@ -160,7 +160,7 @@ function hacer () {
           throw new Error(resSecc.error)
         } else {
           // Recupera categoría guardada
-          return window.fetch(comun.urlBaseApi + resSecc.url, { method: 'get', headers: reqHeaders })
+          return window.fetch(comun.getUrlBaseApi() + resSecc.url, { method: 'get', headers: reqHeaders })
         }
       })
       .then(respuesta => respuesta.json())
@@ -192,7 +192,7 @@ function hacer () {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraSeccion')
     let nombreUrl = document.getElementById('nombreUrl').value
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/${nombreUrl}`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${nombreUrl}`
     window.fetch(url, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()

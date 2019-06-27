@@ -38,6 +38,10 @@ comun.mostrarUsuario().then(usr => {
     console.log(error)
   })
 //
+let uba = comun.getUrlBaseApi()
+uba = uba === '' ? document.location.origin : uba
+document.getElementById('frmLogin').elements['urlApis'].value = uba
+//
 document.getElementById('frmLogin').addEventListener('submit', e => {
   e.preventDefault()
   comun.esperaAjax(true, 'login')
@@ -45,7 +49,9 @@ document.getElementById('frmLogin').addEventListener('submit', e => {
   const headerAuth = 'Basic ' + window.btoa(frmLogin.elements['email'].value + ':' + frmLogin.elements['clave'].value)
   const reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
   //
-  window.fetch(comun.urlBaseApi + '/apis/usuarios/v1/token', { method: 'get', headers: reqHeaders })
+  window.localStorage.setItem('urlBaseApi', frmLogin.elements['urlApis'].value)
+  //
+  window.fetch(comun.getUrlBaseApi() + '/apis/usuarios/v1/token', { method: 'get', headers: reqHeaders })
     .then(respuesta => {
       return respuesta.json()
     })

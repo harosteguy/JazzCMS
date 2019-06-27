@@ -18,7 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { urlBaseApi } from './comun'
+import { getUrlBaseApi } from './comun'
 
 export function autorizacion () {
   return new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ export function autorizacion () {
         'Authorization': 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token')),
         'Accept-Language': htmlLang
       }
-      window.fetch(`${urlBaseApi}/apis/usuarios/v1/autorizacion`, { method: 'get', headers: reqHeaders })
+      window.fetch(`${getUrlBaseApi()}/apis/usuarios/v1/autorizacion`, { method: 'get', headers: reqHeaders })
         .then(respuesta => {
           if (respuesta.status !== 200) {
             reject(new Error('Usuario no autorizado'))

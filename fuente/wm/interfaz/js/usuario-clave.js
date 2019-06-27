@@ -45,7 +45,7 @@ document.getElementById('frmCorreo').addEventListener('submit', e => {
   const reqHeaders = { 'Accept-Language': idioma }
   //
   let resp
-  window.fetch(comun.urlBaseApi + '/apis/usuarios/v1/emailClave',
+  window.fetch(comun.getUrlBaseApi() + '/apis/usuarios/v1/emailClave',
     {
       method: 'post',
       headers: reqHeaders,

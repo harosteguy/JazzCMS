@@ -80,7 +80,7 @@ function hacer () {
 
   // Obtiene autores
   comun.esperaAjax(true, 'autores')
-  window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(autores => {
       if (autores.length > 0) {
@@ -96,7 +96,7 @@ function hacer () {
   // Obtiene secciones
   comun.esperaAjax(true, 'listaSecciones')
   let listaSecciones
-  window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
+  window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(secciones => {
       listaSecciones = secciones
@@ -154,7 +154,7 @@ function hacer () {
   //
   function mostrarAutor (claveValor) {
     comun.esperaAjax(true, 'obtieneAutor')
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/autores/${claveValor.clave}`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/${claveValor.clave}`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(autor => {
@@ -188,7 +188,7 @@ function hacer () {
     let email = document.getElementById('emailNuevoAutor').value
     if (email !== '') {
       comun.esperaAjax(true, 'buscaUsuario')
-      window.fetch(`${comun.urlBaseApi}/apis/usuarios/v1/?email=${email}`, { method: 'get', headers: reqHeaders })
+      window.fetch(`${comun.getUrlBaseApi()}/apis/usuarios/v1/?email=${email}`, { method: 'get', headers: reqHeaders })
         .then(respuesta => respuesta.json())
         .then(usr => {
           if (usr.error) {
@@ -230,7 +230,7 @@ function hacer () {
     let metodo = document.getElementById('guardarNuevo').value === '1' ? 'post' : 'put'
     let autor = recogerDatos()
     dataOriginal = autor // Guarda para verificar si se modificaron datos al abandonar la página
-    let url = `${comun.urlBaseApi}/apis/wm-articulus/v1/autores/`
+    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`
     url = metodo === 'put' ? url + document.getElementById('uid').value : url
     window.fetch(url, { method: metodo, headers: reqHeaders, body: JSON.stringify(autor) })
       .then(respuesta => respuesta.json())
@@ -262,7 +262,7 @@ function hacer () {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraAutor')
     let uid = document.getElementById('uid').value
-    window.fetch(`${comun.urlBaseApi}/apis/wm-articulus/v1/autores/${uid}`, { method: 'delete', headers: reqHeaders })
+    window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/${uid}`, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()
         return {}
