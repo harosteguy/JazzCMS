@@ -28,6 +28,7 @@ import tostada from './widgets/tostada'
 import * as wmCkEditor from './modulos/ckeditor'
 import SelectorImagen from './widgets/selector-imagen'
 //
+comun.registrarServiceWorker().catch(error => { console.error(error.message) })
 comun.setIdiomaPagina()
 let idioma = comun.obtenerIdiomaUrl()
 let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'

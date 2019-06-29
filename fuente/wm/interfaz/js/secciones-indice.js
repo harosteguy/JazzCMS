@@ -29,6 +29,7 @@ import flatpickr from 'flatpickr'
 import { Spanish } from '../../../../node_modules/flatpickr/dist/l10n/es'
 import '../../../../node_modules/flatpickr/dist/themes/material_blue.css'
 //
+comun.registrarServiceWorker().catch(error => { console.error(error.message) })
 comun.setIdiomaPagina()
 let idioma = comun.obtenerIdiomaUrl()
 let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'

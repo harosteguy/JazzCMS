@@ -27,6 +27,7 @@ import { ListaSelect } from './modulos/formularios'
 import tostada from './widgets/tostada'
 import * as wmCkEditor from './modulos/ckeditor'
 //
+comun.registrarServiceWorker().catch(error => { console.error(error.message) })
 comun.setIdiomaPagina()
 let idioma = comun.obtenerIdiomaUrl()
 let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'

@@ -40,6 +40,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "chart.js": "^2.7.3",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^1.0.0",
     "favicons-webpack-plugin": "0.0.9",
     "file-loader": "^1.1.11",

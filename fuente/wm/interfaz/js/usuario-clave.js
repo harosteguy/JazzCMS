@@ -23,6 +23,7 @@ import chorrear from './modulos/chorro'
 import * as comun from './modulos/comun'
 import tostada from './widgets/tostada'
 
+comun.registrarServiceWorker().catch(error => { console.error(error.message) })
 comun.setIdiomaPagina()
 let idioma = comun.obtenerIdiomaUrl()
 let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'

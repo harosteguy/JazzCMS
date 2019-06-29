@@ -36,6 +36,22 @@ export function getUrlBaseApi () {
 
 export let setIdiomas = ['es', 'en'] // El primero es el idioma por defecto
 
+export function registrarServiceWorker () {
+  return new Promise((resolve, reject) => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(swReg => {
+          return resolve(swReg)
+        })
+        .catch(error => {
+          return reject(error)
+        })
+    } else {
+      return reject(new Error('El navegador no soporta service worker'))
+    }
+  })
+}
+
 export function mostrarUsuario () {
   return new Promise((resolve, reject) => {
     autorizacion().then(usr => {

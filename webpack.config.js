@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin')
 const { styles } = require('@ckeditor/ckeditor5-dev-utils')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -230,6 +231,13 @@ module.exports = {
         yandex: false,
         windows: false
       }
-    })
+    }),
+    new CopyPlugin([
+      {
+        from: 'fuente/sw.js',
+        to: 'sw.js'
+      }
+    ])
+
   ]
 }
