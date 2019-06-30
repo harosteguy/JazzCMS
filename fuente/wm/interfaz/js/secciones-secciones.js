@@ -19,7 +19,7 @@
  */
 
 import '../estilo/secciones-secciones.scss'
-import chorrear from './modulos/chorro'
+import chorrear from './modulos/chorro-sw-cache'
 import * as comun from './modulos/comun'
 import { scrollIt } from './modulos/utiles'
 import { emergente } from './modulos/emergente'

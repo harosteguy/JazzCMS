@@ -42,18 +42,18 @@ const recursos = [
   '/wm/contenidos/index.html'
 ]
 
-self.addEventListener('install', function (e) {
+self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(cachePaginas).then(function (cache) {
+    caches.open(cachePaginas).then(cache => {
       return cache.addAll(recursos)
     })
   )
 })
 
-self.addEventListener('activate', function (e) {
+self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
+    caches.keys().then(keyList => {
+      return Promise.all(keyList.map(key => {
         if (key !== cachePaginas && key !== cacheChorro) {
           return caches.delete(key)
         }
@@ -63,7 +63,7 @@ self.addEventListener('activate', function (e) {
   return self.clients.claim()
 })
 
-self.addEventListener('fetch', function (e) {
+self.addEventListener('fetch', e => {
   // https://bugs.chromium.org/p/chromium/issues/detail?id=823392
   if (e.request.cache === 'only-if-cached' && e.request.mode !== 'same-origin') {
     return
@@ -74,16 +74,12 @@ self.addEventListener('fetch', function (e) {
   }
   //
   if (e.request.url.indexOf('/apis/chorro/v1') > -1) {
-    // Stale-while-revalidate
-    // If there's a cached version available, use it, but fetch an update for next time.
+    // Cache then network
     e.respondWith(
-      caches.open(cacheChorro).then(function (cache) {
-        return cache.match(e.request).then(function (response) {
-          let fetchPromise = fetch(e.request).then(function (networkResponse) {
-            cache.put(e.request, networkResponse.clone())
-            return networkResponse
-          })
-          return response || fetchPromise
+      caches.open(cacheChorro).then(cache => {
+        return fetch(e.request).then(response => {
+          cache.put(e.request.url, response.clone())
+          return response
         })
       })
     )
@@ -91,9 +87,9 @@ self.addEventListener('fetch', function (e) {
     // Stale-while-revalidate
     // If there's a cached version available, use it, but fetch an update for next time.
     e.respondWith(
-      caches.open(cachePaginas).then(function (cache) {
-        return cache.match(e.request).then(function (response) {
-          let fetchPromise = fetch(e.request).then(function (networkResponse) {
+      caches.open(cachePaginas).then(cache => {
+        return cache.match(e.request).then(response => {
+          let fetchPromise = fetch(e.request).then(networkResponse => {
             cache.put(e.request, networkResponse.clone())
             return networkResponse
           })

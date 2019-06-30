@@ -19,7 +19,7 @@
  */
 
 import '../estilo/secciones-articulo.scss'
-import chorrear from './modulos/chorro'
+import chorrear from './modulos/chorro-sw-cache'
 import * as comun from './modulos/comun'
 import { dispararEvento, dbFechaHora, fechaHoraDb, scrollIt } from './modulos/utiles'
 import { emergente } from './modulos/emergente'

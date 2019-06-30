@@ -19,7 +19,7 @@
  */
 
 import '../estilo/pagina-ejemplo.scss'
-import chorrear from './modulos/chorro'
+import chorrear from './modulos/chorro-sw-cache'
 
 let setIdiomas = ['es', 'en']
 

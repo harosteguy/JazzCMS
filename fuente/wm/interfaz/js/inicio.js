@@ -19,7 +19,7 @@
  */
 
 import '../estilo/inicio.scss'
-import chorrear from './modulos/chorro'
+import chorrear from './modulos/chorro-sw-cache'
 import * as comun from './modulos/comun'
 import { wdAutores, wdSecciones } from './widgets/widgets'
 
