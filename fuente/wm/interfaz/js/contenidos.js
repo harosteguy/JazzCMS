@@ -97,9 +97,9 @@ function hacer () {
   window.fetch(`${comun.getUrlBaseApi()}/apis/wm-chorro/v1/`, { method: 'get', headers: reqHeaders })
     .then(respuesta => respuesta.json())
     .then(idsConte => {
-      if (idsConte.length > 0) {
-        listaContenidos = new ListaSelect(document.getElementById('listaContenidos'), mostrarContenido)
-        listaContenidos.antesDeCambiar = () => {
+      listaContenidos = new ListaSelect(document.getElementById('listaContenidos'), mostrarContenido)
+      listaContenidos.antesDeCambiar = () => {
+        if (idsConte.length > 0) {
           // Evento para retener la selección de un item y verificar si hay que guardar
           return new Promise((resolve, reject) => {
             comun.continuarSinGuardar(dataOriginal, recogerDatos()).then(continuar => {
@@ -116,13 +116,12 @@ function hacer () {
           aParaPoblarLista.push({ clave: idConte, valor: idConte })
         })
         listaContenidos.poblar(aParaPoblarLista, { nombreClave: 'clave', nombreValor: 'valor' })
-        comun.esperaAjax(false, 'listaIds')
       }
+      comun.esperaAjax(false, 'listaIds')
     })
     .catch(error => {
       console.error(error)
     })
-
   //
   function mostrarContenido (claveValor) {
     comun.esperaAjax(true, 'obtieneConte')
