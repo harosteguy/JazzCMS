@@ -98,8 +98,8 @@ function hacer () {
     .then(respuesta => respuesta.json())
     .then(idsConte => {
       listaContenidos = new ListaSelect(document.getElementById('listaContenidos'), mostrarContenido)
-      listaContenidos.antesDeCambiar = () => {
-        if (idsConte.length > 0) {
+      if (idsConte.length > 0) {
+        listaContenidos.antesDeCambiar = () => {
           // Evento para retener la selección de un item y verificar si hay que guardar
           return new Promise((resolve, reject) => {
             comun.continuarSinGuardar(dataOriginal, recogerDatos()).then(continuar => {
@@ -121,7 +121,9 @@ function hacer () {
     })
     .catch(error => {
       console.error(error)
+      comun.esperaAjax(false, 'listaIds')
     })
+
   //
   function mostrarContenido (claveValor) {
     comun.esperaAjax(true, 'obtieneConte')

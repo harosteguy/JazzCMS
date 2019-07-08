@@ -108,7 +108,6 @@ function hacer () {
   let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
 
   let urlApi = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`
-
   // Categorias
   multiSelect.iniciar(document.getElementById('categorias'))
   // Selector de fecha
