@@ -150,13 +150,7 @@ function hacer () {
           selBlog.appendChild(opt)
         })
       } else { // El usuario no tiene permisos en ningún blog
-        window.sessionStorage.removeItem('uid')
-        window.sessionStorage.removeItem('token')
-        window.sessionStorage.removeItem('nombre')
-        window.sessionStorage.removeItem('apellido')
-        window.sessionStorage.removeItem('esAdmin')
-        window.location.href = `/${idiomaUrl}`
-        throw new Error('Usuario no autorizado.')
+        window.location.href = `/${idiomaUrl}wm`
       }
       if (artiBase && blogBase) {
         mostrarArticulo(blogBase, artiBase)

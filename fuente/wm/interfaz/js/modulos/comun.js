@@ -23,7 +23,7 @@ import { autorizacion } from './usuario'
 import { emergente } from './emergente'
 
 // URL para los contenidos de la misma aplicación como etiquetas, avisos, etc. Usada en chorro.js o chorro-sw-cache.js
-export let urlApiPropia = 'https://api-cms.jazzcms.com' // Dejar vacío si es igual a la URL de la aplicación
+export let urlApiPropia = '' // Dejar vacío si es igual a la URL de la aplicación
 
 // URL por defecto de los contenidos que gestiona la aplicación
 export let urlBaseApi = '' // Dejar vacío si es igual a la URL de la aplicación
