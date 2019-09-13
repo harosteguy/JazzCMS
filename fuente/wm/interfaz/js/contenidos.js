@@ -28,20 +28,18 @@ import tostada from './widgets/tostada'
 import * as wmCkEditor from './modulos/ckeditor'
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer()
   } else {
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   }
 })
   .catch(error => {
     console.error(error)
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   })
 
 //
@@ -54,21 +52,21 @@ function hacer () {
   comun.setLinkIdioma()
   document.querySelector('.menu-lateral .contenidos').classList.add('activo')
 
-  let ckEditores = [] // Variable para todos los editores de lapágina
+  const ckEditores = [] // Variable para todos los editores de lapágina
 
   // Crea un editor y lo guarda con su nombre en ckEditores[]
   function crearEditor (nombre) {
     return new Promise((resolve, reject) => {
-      let grupo = document.createElement('div')
+      const grupo = document.createElement('div')
       grupo.classList.add('grupo')
-      let etiqueta = document.createElement('label')
+      const etiqueta = document.createElement('label')
       etiqueta.textContent = nombre
       grupo.appendChild(etiqueta)
-      let areaTexto = document.createElement('textarea')
+      const areaTexto = document.createElement('textarea')
       grupo.appendChild(areaTexto)
       document.querySelector('.ckEditores').appendChild(grupo)
       wmCkEditor.crearEditor(areaTexto, 'contenido').then(editor => {
-        ckEditores[ nombre ] = editor
+        ckEditores[nombre] = editor
         resolve(editor)
       })
         .catch(error => {
@@ -89,8 +87,8 @@ function hacer () {
     dataOriginal = recogerDatos()
   }).catch(error => { console.error(error) })
   //
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
   let listaContenidos
   // Obtiene lista de IDs de contenido
   comun.esperaAjax(true, 'listaIds')
@@ -111,7 +109,7 @@ function hacer () {
             }).catch(error => { console.error(error) })
           })
         }
-        let aParaPoblarLista = []
+        const aParaPoblarLista = []
         idsConte.forEach(idConte => {
           aParaPoblarLista.push({ clave: idConte, valor: idConte })
         })
@@ -137,7 +135,7 @@ function hacer () {
           document.getElementById('idContenido').value = contenido.id
           // CKEditor al final para reservar los datos del formulario cuando los editores estén listos
           comun.setIdiomas.forEach(idioma => {
-            ckEditores[ idioma ].setData(contenido[idioma])
+            ckEditores[idioma].setData(contenido[idioma])
             dataOriginal = recogerDatos() // Guarda para verificar si se modificaron datos al abandonar la página
           })
         }
@@ -151,11 +149,11 @@ function hacer () {
 
   // Recoger datos del formulario para enviar
   function recogerDatos () {
-    let datos = {
+    const datos = {
       id: document.getElementById('idContenido').value
     }
     comun.setIdiomas.forEach(idioma => {
-      datos[idioma] = ckEditores[ idioma ].getData()
+      datos[idioma] = ckEditores[idioma].getData()
     })
     return datos
   }
@@ -163,11 +161,11 @@ function hacer () {
   // Guardar contenido
   document.getElementById('guardar').addEventListener('click', () => {
     comun.esperaAjax(true, 'guardaConte')
-    let idOriginal = document.getElementById('idOriginal').value
-    let metodo = idOriginal === '' ? 'post' : 'put'
+    const idOriginal = document.getElementById('idOriginal').value
+    const metodo = idOriginal === '' ? 'post' : 'put'
     let url = `${comun.getUrlBaseApi()}/apis/wm-chorro/v1/`
     url += metodo === 'put' ? idOriginal : ''
-    let contenido = recogerDatos()
+    const contenido = recogerDatos()
     //
     comun.setIdiomas.forEach(idioma => { // Revisa el contenido en cada idioma
       // Si empieza con '<p>', termina con '</p>' y hay una sola '<p>' es párrafo único
@@ -187,7 +185,7 @@ function hacer () {
         if (contenido.error) {
           tostada(contenido.error, 4, 'color-cuatro')
         } else {
-          let idConte = contenido.url.substr(contenido.url.lastIndexOf('/') + 1)
+          const idConte = contenido.url.substr(contenido.url.lastIndexOf('/') + 1)
           if (metodo === 'put') {
             listaContenidos.actualizar(idOriginal, idConte, idConte)
           } else if (metodo === 'post') {
@@ -215,7 +213,7 @@ function hacer () {
   document.querySelector('#confirmaBorrar .confirmar').addEventListener('click', () => {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraConte')
-    let idOriginal = document.getElementById('idOriginal').value
+    const idOriginal = document.getElementById('idOriginal').value
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-chorro/v1/${idOriginal}`, {
       method: 'delete',
       headers: reqHeaders
@@ -231,7 +229,7 @@ function hacer () {
           document.getElementById('idOriginal').value = ''
           document.getElementById('idContenido').value = ''
           comun.setIdiomas.forEach(idioma => {
-            ckEditores[ idioma ].setData('')
+            ckEditores[idioma].setData('')
           })
           listaContenidos.borrar(idOriginal)
           scrollIt(document.getElementsByTagName('body')[0], 350, 'easeOutQuad', () => {
@@ -255,7 +253,7 @@ function hacer () {
         document.getElementById('idOriginal').value = ''
         document.getElementById('idContenido').value = ''
         comun.setIdiomas.forEach(idioma => {
-          ckEditores[ idioma ].setData('')
+          ckEditores[idioma].setData('')
         })
         scrollIt(document.getElementsByTagName('body')[0], 350, 'easeOutQuad', () => {
           document.getElementById('idContenido').focus()
@@ -268,9 +266,9 @@ function hacer () {
 
   //
   window.onbeforeunload = evento => {
-    let dataActual = recogerDatos()
+    const dataActual = recogerDatos()
     if (JSON.stringify(dataActual) !== JSON.stringify(dataOriginal)) {
-      let mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
+      const mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
       evento.returnValue = mensaje // Gecko, Trident, Chrome 34+
       return mensaje // Gecko, WebKit, Chrome <34
     }

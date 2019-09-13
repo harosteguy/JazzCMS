@@ -24,12 +24,10 @@ import * as comun from './modulos/comun'
 import tostada from './widgets/tostada'
 
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
-  window.location.href = `/${idiomaUrl}wm/`
+  window.location.href = `/${idioma}/wm/`
 })
   .catch(error => {
     chorrear(() => {
@@ -41,16 +39,16 @@ comun.mostrarUsuario().then(usr => {
 //
 let uba = comun.getUrlBaseApi()
 uba = uba === '' ? document.location.origin : uba
-document.getElementById('frmLogin').elements['urlApis'].value = uba
+document.getElementById('frmLogin').elements.urlApis.value = uba
 //
 document.getElementById('frmLogin').addEventListener('submit', e => {
   e.preventDefault()
   comun.esperaAjax(true, 'login')
   const frmLogin = document.getElementById('frmLogin')
-  const headerAuth = 'Basic ' + window.btoa(frmLogin.elements['email'].value + ':' + frmLogin.elements['clave'].value)
-  const reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(frmLogin.elements.email.value + ':' + frmLogin.elements.clave.value)
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
   //
-  window.localStorage.setItem('urlBaseApi', frmLogin.elements['urlApis'].value)
+  window.localStorage.setItem('urlBaseApi', frmLogin.elements.urlApis.value)
   //
   window.fetch(comun.getUrlBaseApi() + '/apis/usuarios/v1/token', { method: 'get', headers: reqHeaders })
     .then(respuesta => {
@@ -64,7 +62,7 @@ document.getElementById('frmLogin').addEventListener('submit', e => {
       window.sessionStorage.setItem('nombre', usr.nombre)
       window.sessionStorage.setItem('apellido', usr.apellido)
       window.sessionStorage.setItem('esAdmin', usr.esAdmin)
-      window.location.href = `/${idiomaUrl}wm/`
+      window.location.href = `/${idioma}/wm/`
     })
     .catch(error => {
       tostada(document.querySelector('.algoSalioMal').textContent, 4, 'color-cuatro')

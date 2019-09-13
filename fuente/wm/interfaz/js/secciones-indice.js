@@ -30,9 +30,7 @@ import { Spanish } from '../../../../node_modules/flatpickr/dist/l10n/es'
 import '../../../../node_modules/flatpickr/dist/themes/material_blue.css'
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
@@ -40,8 +38,8 @@ comun.mostrarUsuario().then(usr => {
     document.querySelector('.grupo.autor').classList.remove('oculto')
   } else {
     // Comprueba si es un autor activo
-    let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-    let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+    const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+    const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200) {
@@ -63,7 +61,7 @@ comun.mostrarUsuario().then(usr => {
         window.sessionStorage.removeItem('nombre')
         window.sessionStorage.removeItem('apellido')
         window.sessionStorage.removeItem('esAdmin')
-        window.location.href = `/${idiomaUrl}`
+        window.location.href = `/${idioma}/`
         console.log(error, 1)
       })
   }
@@ -74,7 +72,7 @@ comun.mostrarUsuario().then(usr => {
     window.sessionStorage.removeItem('nombre')
     window.sessionStorage.removeItem('apellido')
     window.sessionStorage.removeItem('esAdmin')
-    window.location.href = `/${idiomaUrl}wm/usuario/login/`
+    window.location.href = `/${idioma}/wm/usuario/login/`
     console.log(error, 2)
   })
 
@@ -104,8 +102,8 @@ function hacer () {
     dateFormat: 'd/m/Y',
     enableSeconds: false
   })
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
   let listaSecciones, blogBase
 
   // Obtiene secciones
@@ -116,7 +114,7 @@ function hacer () {
       if (secciones.length > 0) {
         listaSecciones = new ListaSelect(document.getElementById('listaSecciones'), listaOnClick)
         listaSecciones.poblar(secciones, { nombreClave: 'nombreUrl', nombreValor: 'nombre' })
-        let seleccion = listaSecciones.seleccionar(0)
+        const seleccion = listaSecciones.seleccionar(0)
         document.querySelector('h1 .seccion').textContent = '"' + seleccion.valor + '"'
         document.querySelector('.buscador .control').placeholder = document.querySelector('.buscarEn').textContent + ' "' + seleccion.valor + '"'
         listar()
@@ -124,12 +122,12 @@ function hacer () {
         blogBase = listaSecciones.seleccionado().clave
         return window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${blogBase}/categorias`, { method: 'get', headers: reqHeaders })
       } else { // El usuario no tiene permisos en ningún blog o no hay secciones cargadas
-        window.location.href = `/${idiomaUrl}wm`
+        window.location.href = `/${idioma}/wm`
       }
     })
     .then(respuesta => respuesta.json())
     .then(categorias => {
-      let selCat = document.getElementById('filtroCategoria')
+      const selCat = document.getElementById('filtroCategoria')
       let optCat
       categorias.forEach(cat => {
         optCat = document.createElement('option')
@@ -150,7 +148,7 @@ function hacer () {
     })
     .then(autores => {
       if (autores) {
-        let selAutor = document.getElementById('filtroAutor')
+        const selAutor = document.getElementById('filtroAutor')
         let optAutor
         autores.forEach(autor => {
           optAutor = document.createElement('option')
@@ -173,8 +171,8 @@ function hacer () {
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${claveValor.clave}/categorias`, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(categorias => {
-        let selCat = document.getElementById('filtroCategoria')
-        let options = selCat.querySelectorAll('option')
+        const selCat = document.getElementById('filtroCategoria')
+        const options = selCat.querySelectorAll('option')
         let optCat
         // Elimina options
         let i = options.length
@@ -194,8 +192,8 @@ function hacer () {
       .then(respuesta => respuesta.json())
       .then(autores => {
         if (autores) {
-          let selAutor = document.getElementById('filtroAutor')
-          let options = selAutor.querySelectorAll('option')
+          const selAutor = document.getElementById('filtroAutor')
+          const options = selAutor.querySelectorAll('option')
           let optAutor
           // Elimina options
           let i = options.length
@@ -223,10 +221,10 @@ function hacer () {
         .then(artis => {
           if (artis.articulos.length > 0) {
             artis.articulos.forEach(arti => {
-              let articulo = document.querySelector('#listaArtis .plantilla').cloneNode(true)
-              let blogBase = listaSecciones.seleccionado().clave
-              articulo.querySelector('.editar').href = `/${idiomaUrl}wm/secciones/articulo/${blogBase}/${arti.tituloUrl}`
-              articulo.querySelector('.titulo').href = `/${idiomaUrl}wm/secciones/articulo/${blogBase}/${arti.tituloUrl}`
+              const articulo = document.querySelector('#listaArtis .plantilla').cloneNode(true)
+              const blogBase = listaSecciones.seleccionado().clave
+              articulo.querySelector('.editar').href = `/${idioma}/wm/secciones/articulo/${blogBase}/${arti.tituloUrl}`
+              articulo.querySelector('.titulo').href = `/${idioma}/wm/secciones/articulo/${blogBase}/${arti.tituloUrl}`
               articulo.querySelector('.titulo').textContent = arti.titulo
               articulo.querySelector('.fecha').innerHTML = getFechaCorta(new Date(arti.fechaPublicado), idioma)
               articulo.querySelector('.fecha').innerHTML += `<br><span class="hora">${fechaHora2horaMinutos(arti.fechaPublicado)}</span>`
@@ -259,12 +257,12 @@ function hacer () {
 
   // Buscador
   document.querySelector('.buscador .buscar').addEventListener('click', () => {
-    let textoBusca = document.querySelector('.buscador .texto').value
+    const textoBusca = document.querySelector('.buscador .texto').value
     if (textoBusca !== '') listar()
   })
   document.querySelector('.buscador .texto').addEventListener('keyup', (evento) => {
     if (evento.keyCode === 13) {
-      let textoBusca = document.querySelector('.buscador .texto').value
+      const textoBusca = document.querySelector('.buscador .texto').value
       if (textoBusca !== '') listar()
     }
   })
@@ -299,13 +297,13 @@ function hacer () {
   document.getElementById('ordenDir').addEventListener('click', () => { listar() })
 
   function listar () {
-    let blogBase = listaSecciones.seleccionado().clave
+    const blogBase = listaSecciones.seleccionado().clave
     if (blogBase) {
-      let ordenCampo = botonera.leer(document.getElementById('ordenCampo')) === 'alfa' ? 'alfa' : 'crono'
-      let ordenDir = botonera.leer(document.getElementById('ordenDir')) === 'asc' ? 'asc' : 'desc'
+      const ordenCampo = botonera.leer(document.getElementById('ordenCampo')) === 'alfa' ? 'alfa' : 'crono'
+      const ordenDir = botonera.leer(document.getElementById('ordenDir')) === 'asc' ? 'asc' : 'desc'
       let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${blogBase}/articulos/?orden=${ordenCampo}&ordenDir=${ordenDir}&porPag=20`
       //
-      let textoBusca = document.querySelector('.buscador .texto').value
+      const textoBusca = document.querySelector('.buscador .texto').value
       if (textoBusca !== '') {
         url += `&busqueda=${textoBusca}`
         document.getElementById('verTodos').style.display = 'block'
@@ -315,7 +313,7 @@ function hacer () {
         document.querySelector('h1 .tit').textContent = document.querySelector('.artisEn').textContent
       }
       //
-      let idCat = document.getElementById('filtroCategoria').value
+      const idCat = document.getElementById('filtroCategoria').value
       if (idCat !== '') {
         url += `&idCat=${idCat}`
       }
@@ -332,17 +330,17 @@ function hacer () {
         url += `&hasta=${hasta}`
       }
       //
-      let idAutor = document.getElementById('filtroAutor').value
+      const idAutor = document.getElementById('filtroAutor').value
       if (idAutor !== '') {
         url += `&idAutor=${idAutor}`
       }
       //
-      let filtroEstado = botonera.leer(document.getElementById('filtroEstado'))
+      const filtroEstado = botonera.leer(document.getElementById('filtroEstado'))
       if (filtroEstado !== 'todos') {
         url += `&estado=${filtroEstado}`
       }
       //
-      let artis = document.querySelectorAll('#listaArtis .lista .articulo')
+      const artis = document.querySelectorAll('#listaArtis .lista .articulo')
       for (var arti of artis) document.querySelector('#listaArtis .lista').removeChild(arti) // Vacía la lista
       //
       listarArticulos(url).then(totListados => {

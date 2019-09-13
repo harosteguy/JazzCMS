@@ -24,17 +24,15 @@ import * as comun from './modulos/comun'
 import { wdAutores, wdSecciones } from './widgets/widgets'
 
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer(usr)
   } else {
     // Comprueba si es un autor activo
-    let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-    let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+    const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+    const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200) {
@@ -56,7 +54,7 @@ comun.mostrarUsuario().then(usr => {
         window.sessionStorage.removeItem('nombre')
         window.sessionStorage.removeItem('apellido')
         window.sessionStorage.removeItem('esAdmin')
-        window.location.href = `/${idiomaUrl}`
+        window.location.href = `/${idioma}/`
       })
   }
 })
@@ -67,7 +65,7 @@ comun.mostrarUsuario().then(usr => {
     window.sessionStorage.removeItem('nombre')
     window.sessionStorage.removeItem('apellido')
     window.sessionStorage.removeItem('esAdmin')
-    window.location.href = `/${idiomaUrl}wm/usuario/login/`
+    window.location.href = `/${idioma}/wm/usuario/login/`
   })
 
 //

@@ -28,20 +28,18 @@ import tostada from './widgets/tostada'
 import * as wmCkEditor from './modulos/ckeditor'
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer()
   } else {
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   }
 })
   .catch(error => {
     console.error(error)
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   })
 
 //
@@ -61,7 +59,7 @@ function hacer () {
       dataOriginal = recogerDatos()
     }).catch(error => { console.error(error) })
 
-  let listaSecciones = new ListaSelect(document.getElementById('listaSecciones'), mostrarSeccion)
+  const listaSecciones = new ListaSelect(document.getElementById('listaSecciones'), mostrarSeccion)
   listaSecciones.antesDeCambiar = () => {
     // Evento para retener la selección de un item y verificar si hay que guardar
     return new Promise((resolve, reject) => {
@@ -75,8 +73,8 @@ function hacer () {
     })
   }
 
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
 
   // Obtiene secciones
   comun.esperaAjax(true, 'secciones')
@@ -114,7 +112,7 @@ function hacer () {
   //
   function mostrarSeccion (claveValor) {
     comun.esperaAjax(true, 'obtieneSeccion')
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${claveValor.clave}/?incNumArticulos=1`
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${claveValor.clave}/?incNumArticulos=1`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(seccion => {
@@ -147,11 +145,11 @@ function hacer () {
   // Guardar sección
   document.getElementById('guardar').addEventListener('click', () => {
     comun.esperaAjax(true, 'guardaSeccion')
-    let nombreUrl = document.getElementById('nombreUrl').value
-    let metodo = (nombreUrl === '') ? 'post' : 'put'
+    const nombreUrl = document.getElementById('nombreUrl').value
+    const metodo = (nombreUrl === '') ? 'post' : 'put'
     let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`
     url += metodo === 'put' ? nombreUrl : ''
-    let seccion = recogerDatos()
+    const seccion = recogerDatos()
     dataOriginal = seccion // Guarda para verificar si se modificaron datos al abandonar la página
     window.fetch(url, { method: metodo, headers: reqHeaders, body: JSON.stringify(seccion) })
       .then(respuesta => respuesta.json())
@@ -192,8 +190,8 @@ function hacer () {
   document.querySelector('#confirmaBorrar .confirmar').addEventListener('click', () => {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraSeccion')
-    let nombreUrl = document.getElementById('nombreUrl').value
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${nombreUrl}`
+    const nombreUrl = document.getElementById('nombreUrl').value
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${nombreUrl}`
     window.fetch(url, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()
@@ -216,9 +214,9 @@ function hacer () {
 
   //
   window.onbeforeunload = evento => {
-    let dataActual = recogerDatos()
+    const dataActual = recogerDatos()
     if (JSON.stringify(dataActual) !== JSON.stringify(dataOriginal)) {
-      let mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
+      const mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
       evento.returnValue = mensaje // Gecko, Trident, Chrome 34+
       return mensaje // Gecko, WebKit, Chrome <34
     }

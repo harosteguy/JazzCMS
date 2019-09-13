@@ -24,12 +24,10 @@ import * as comun from './modulos/comun'
 import tostada from './widgets/tostada'
 
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
-  window.location.href = `/${idiomaUrl}wm/`
+  window.location.href = `/${idioma}/wm/`
 })
   .catch(error => {
     chorrear(() => {
@@ -46,8 +44,8 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
   const reqHeaders = { 'Accept-Language': idioma }
   const datos = {
     token: document.location.pathname.split('/').pop(), // Lee token de URL
-    clave1: frmClaves.elements['clave1'].value,
-    clave2: frmClaves.elements['clave2'].value
+    clave1: frmClaves.elements.clave1.value,
+    clave2: frmClaves.elements.clave2.value
   }
   if (datos.clave1 !== datos.clave2) {
     tostada(document.querySelector('.clavesNoIguales').textContent, 4, 'color-cuatro')
@@ -74,7 +72,7 @@ document.getElementById('frmClaves').addEventListener('submit', e => {
       window.sessionStorage.setItem('nombre', usr.nombre)
       window.sessionStorage.setItem('apellido', usr.apellido)
       window.sessionStorage.setItem('esAdmin', usr.esAdmin)
-      window.location.href = `/${idiomaUrl}wm/`
+      window.location.href = `/${idioma}/wm/`
     })
     .catch(error => {
       if (resp.status === 400) {

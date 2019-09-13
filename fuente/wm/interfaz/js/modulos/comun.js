@@ -23,10 +23,10 @@ import { autorizacion } from './usuario'
 import { emergente } from './emergente'
 
 // URL para los contenidos de la misma aplicación como etiquetas, avisos, etc. Usada en chorro.js o chorro-sw-cache.js
-export let urlApiPropia = '' // Dejar vacío si es igual a la URL de la aplicación
+export const urlApiPropia = '' // Dejar vacío si es igual a la URL de la aplicación
 
 // URL por defecto de los contenidos que gestiona la aplicación
-export let urlBaseApi = '' // Dejar vacío si es igual a la URL de la aplicación
+export const urlBaseApi = '' // Dejar vacío si es igual a la URL de la aplicación
 
 export function getUrlBaseApi () {
   return window.localStorage.getItem('urlBaseApi') !== null
@@ -34,7 +34,7 @@ export function getUrlBaseApi () {
     : module.exports.urlBaseApi
 }
 
-export let setIdiomas = ['es', 'en'] // El primero es el idioma por defecto
+export const setIdiomas = ['es', 'en'] // El primero es el idioma por defecto
 
 export function registrarServiceWorker () {
   return new Promise((resolve, reject) => {
@@ -87,19 +87,35 @@ export function mostrarUsuario () {
 }
 
 export function obtenerIdiomaUrl () {
-  let partes = document.location.pathname.split('/')
+  const partes = document.location.pathname.split('/')
   partes.shift() // Quita el host
   return module.exports.setIdiomas.includes(partes[0]) ? partes[0] : module.exports.setIdiomas[0]
 }
 
 export function setIdiomaPagina () {
-  let idioma = module.exports.obtenerIdiomaUrl()
+  let idioma
+  const partesUrl = document.location.pathname.split('/')
+  partesUrl.shift() // Quita el host
+  if (module.exports.setIdiomas.includes(partesUrl[0])) { // Si hay un idioma válido en URL lo guarda en localStorage
+    window.localStorage.setItem('idiomaAppCms', partesUrl[0])
+    idioma = partesUrl[0]
+  } else {
+    idioma = window.localStorage.getItem('idiomaAppCms') // Busca idioma en localStorage
+    if (!module.exports.setIdiomas.includes(idioma)) { // Si no hay idioma válido en localStorage
+      // Busca idioma válido en el navegador o usa idioma por defecto
+      idioma = window.navigator.language.substr(0, 2)
+      idioma = module.exports.setIdiomas.includes(idioma) ? idioma : module.exports.setIdiomas[0]
+      window.localStorage.setItem('idiomaAppCms', idioma)
+    }
+    const url = window.location.protocol + '//' + window.location.host + '/' + idioma + window.location.pathname
+    window.history.replaceState(null, null, url)
+  }
   // Setea html lang
   document.documentElement.lang = idioma
   // Setea href y hreflang
   let hrefOrig
-  let enlaces = document.querySelectorAll('[href]')
-  let idiomaUrl = idioma === module.exports.setIdiomas[0] ? '' : idioma + '/'
+  const enlaces = document.querySelectorAll('[href]')
+  const idiomaUrl = idioma === module.exports.setIdiomas[0] ? '' : idioma + '/'
   enlaces.forEach(enlace => {
     hrefOrig = enlace.href
     enlace.href = enlace.href.replace(/\[\[idiomaUrl\]\]/, idiomaUrl)
@@ -107,12 +123,16 @@ export function setIdiomaPagina () {
       enlace.hreflang = idioma // set hreflang
     }
   })
+  //
+  return idioma
 }
 
 export function setLinkIdioma () {
-  let idioma = module.exports.obtenerIdiomaUrl()
+  const idioma = module.exports.obtenerIdiomaUrl()
   document.querySelector('a.idioma').innerText = idioma === module.exports.setIdiomas[0] ? 'inglés' : 'spanish'
-  document.querySelector('a.idioma').href = idioma === module.exports.setIdiomas[0] ? '/' + module.exports.setIdiomas[1] + '/wm/' : '/wm/'
+  document.querySelector('a.idioma').href = idioma === module.exports.setIdiomas[0]
+    ? '/' + module.exports.setIdiomas[1] + '/wm/'
+    : '/' + module.exports.setIdiomas[0] + '/wm/'
 }
 
 export function esperaAjax (mostrar, proceso) {
@@ -122,7 +142,7 @@ export function esperaAjax (mostrar, proceso) {
     if (!capaEspera) {
       capaEspera = document.createElement('div')
       capaEspera.id = 'capaEspera'
-      let spinner = document.createElement('img')
+      const spinner = document.createElement('img')
       spinner.src = '/wm/interfaz/img/spinner.svg'
       spinner.classList.add('spinner')
       capaEspera.appendChild(spinner)
@@ -142,7 +162,7 @@ export function esperaAjax (mostrar, proceso) {
       //
       jsonProcesos = capaEspera.getAttribute('data-procesos')
       aProcesos = jsonProcesos ? JSON.parse(jsonProcesos) : []
-      let indice = aProcesos.indexOf(proceso)
+      const indice = aProcesos.indexOf(proceso)
       if (indice > -1) {
         aProcesos.splice(indice, 1)
         capaEspera.dataset.procesos = JSON.stringify(aProcesos)
@@ -179,7 +199,7 @@ export function continuarSinGuardar (dataOriginal, dataActual) {
   })
 }
 
-export let menuLateral = {
+export const menuLateral = {
   iniciar: () => {
     let uba = module.exports.getUrlBaseApi()
     uba = uba === '' ? document.location.origin : uba
@@ -197,7 +217,7 @@ export let menuLateral = {
     //
     document.querySelector('.barra-superior .hamburguesa').addEventListener('click', evento => {
       evento.preventDefault()
-      let icono = document.querySelector('.barra-superior .hamburguesa .ico')
+      const icono = document.querySelector('.barra-superior .hamburguesa .ico')
       if (!document.querySelector('.menu-lateral').classList.contains('visible')) {
         document.querySelector('.menu-lateral').classList.add('visible')
         icono.innerHTML = '<svg viewBox="0 0 352 512"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>'

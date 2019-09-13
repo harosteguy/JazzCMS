@@ -24,12 +24,10 @@ import * as comun from './modulos/comun'
 import tostada from './widgets/tostada'
 
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
-  window.location.href = `/${idiomaUrl}wm/`
+  window.location.href = `/${idioma}/wm/`
 })
   .catch(error => {
     chorrear(() => {
@@ -50,7 +48,7 @@ document.getElementById('frmCorreo').addEventListener('submit', e => {
     {
       method: 'post',
       headers: reqHeaders,
-      body: JSON.stringify({ email: frmCorreo.elements['email'].value })
+      body: JSON.stringify({ email: frmCorreo.elements.email.value })
     })
     .then(respuesta => {
       resp = respuesta
@@ -61,7 +59,7 @@ document.getElementById('frmCorreo').addEventListener('submit', e => {
 
       comun.esperaAjax(false, 'clave')
       tostada(document.querySelector('.avisoEmailClaveOk').textContent, 8, 'color-dos')
-      frmCorreo.elements['email'].value = ''
+      frmCorreo.elements.email.value = ''
     })
     .catch(error => {
       if (resp.status === 400) {

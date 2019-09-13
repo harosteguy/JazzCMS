@@ -33,17 +33,15 @@ import { Spanish } from '../../../../node_modules/flatpickr/dist/l10n/es'
 require('../../../../node_modules/flatpickr/dist/themes/material_blue.css')
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer()
   } else {
     // Comprueba si es un autor activo
-    let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-    let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+    const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+    const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`, { method: 'get', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200) {
@@ -65,7 +63,7 @@ comun.mostrarUsuario().then(usr => {
         window.sessionStorage.removeItem('nombre')
         window.sessionStorage.removeItem('apellido')
         window.sessionStorage.removeItem('esAdmin')
-        window.location.href = `/${idiomaUrl}`
+        window.location.href = `/${idioma}/`
       })
   }
 })
@@ -76,7 +74,7 @@ comun.mostrarUsuario().then(usr => {
     window.sessionStorage.removeItem('nombre')
     window.sessionStorage.removeItem('apellido')
     window.sessionStorage.removeItem('esAdmin')
-    window.location.href = `/${idiomaUrl}wm/usuario/login/`
+    window.location.href = `/${idioma}/wm/usuario/login/`
   })
 
 //
@@ -90,24 +88,24 @@ function hacer () {
   document.querySelector('.menu-lateral .secciones-articulo').classList.add('activo')
   checkbox.iniciar() // Checkboxes personalizados
   // Obtiene de la URL nombre base del artículo y del blog
-  let partes = document.location.pathname.split('/')
-  if (partes[ partes.length - 1 ] === '') { // Si la URL temina en barra el último elemento del array estará vacío
+  const partes = document.location.pathname.split('/')
+  if (partes[partes.length - 1] === '') { // Si la URL temina en barra el último elemento del array estará vacío
     partes.pop() // entonces lo elimina
   }
   let artiBase, blogBase
   if (partes.length === 6 || partes.length === 7) { // URL sin y con idioma
-    artiBase = partes[ partes.length - 1 ]
-    blogBase = partes[ partes.length - 2 ]
+    artiBase = partes[partes.length - 1]
+    blogBase = partes[partes.length - 2]
   } else {
     artiBase = ''
     blogBase = ''
   }
   // Valores para peticiones a la API
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
 
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
 
-  let urlApi = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`
+  const urlApi = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/`
   // Categorias
   multiSelect.iniciar(document.getElementById('categorias'))
   // Selector de fecha
@@ -127,13 +125,13 @@ function hacer () {
     enableSeconds: true
   })
   // Editor HTML
-  let ckEditores = []
+  const ckEditores = []
   wmCkEditor.crearEditor(document.getElementById('entradilla'), 'articuloIntro')
     .then(editor => {
-      ckEditores['entradilla'] = editor
+      ckEditores.entradilla = editor
       return wmCkEditor.crearEditor(document.getElementById('texto'), 'articuloCuerpo')
     }).then(editor => {
-      ckEditores['texto'] = editor
+      ckEditores.texto = editor
       //
       dataOriginal = recogerDatos()
       // Obtiene blogs
@@ -150,7 +148,7 @@ function hacer () {
           selBlog.appendChild(opt)
         })
       } else { // El usuario no tiene permisos en ningún blog
-        window.location.href = `/${idiomaUrl}wm`
+        window.location.href = `/${idioma}/wm`
       }
       if (artiBase && blogBase) {
         mostrarArticulo(blogBase, artiBase)
@@ -166,7 +164,7 @@ function hacer () {
       .then(respuesta => respuesta.json())
       .then(arti => {
         // Actualiza URL
-        window.history.pushState(null, null, `/${idiomaUrl}wm/secciones/articulo/${blogBase}/${artiBase}`)
+        window.history.pushState(null, null, `/${idioma}/wm/secciones/articulo/${blogBase}/${artiBase}`)
         // Blog del artículo
         document.getElementById('secciones').value = blogBase
         document.getElementById('secciones').disabled = true
@@ -178,10 +176,10 @@ function hacer () {
         document.getElementById('tituloUrl').value = arti.tituloUrl
         document.getElementById('copete').value = arti.copete
         document.getElementById('titulo').value = arti.titulo
-        ckEditores['entradilla'].setData(arti.entradilla)
-        ckEditores['texto'].setData(arti.texto)
+        ckEditores.entradilla.setData(arti.entradilla)
+        ckEditores.texto.setData(arti.texto)
         // Categorías del articulo
-        let idsCat = arti.categorias.map(cat => cat.id)
+        const idsCat = arti.categorias.map(cat => cat.id)
         multiSelect.escribir(document.getElementById('categorias'), idsCat)
         // Fecha
         document.getElementById('fechaPublicado').value = arti.fechaPublicado ? dbFechaHora(arti.fechaPublicado) : ''
@@ -215,8 +213,8 @@ function hacer () {
       copete: document.getElementById('copete').value,
       titulo: document.getElementById('titulo').value,
       tituloUrl: document.getElementById('tituloUrl').value,
-      entradilla: ckEditores['entradilla'].getData(),
-      texto: ckEditores['texto'].getData(),
+      entradilla: ckEditores.entradilla.getData(),
+      texto: ckEditores.texto.getData(),
       publicado: (document.getElementById('publicado').checked ? 1 : 0),
       fechaPublicado: fechaHoraDb(document.getElementById('fechaPublicado').value),
       idsCat: multiSelect.leer(document.getElementById('categorias')),
@@ -230,7 +228,7 @@ function hacer () {
   // Actualiza select categorías al seleccionar blog
   document.getElementById('secciones').addEventListener('change', () => {
     comun.esperaAjax(true, 'actualiCat')
-    let blogBase = document.getElementById('secciones').value
+    const blogBase = document.getElementById('secciones').value
     window.fetch(urlApi + blogBase + '/categorias/', { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(categorias => {
@@ -251,13 +249,13 @@ function hacer () {
     }).catch(error => { console.error(error) })
   })
   function limpiarEditor () {
-    window.history.pushState(null, null, `/${idiomaUrl}wm/secciones/articulo/`)// Actualiza URL
+    window.history.pushState(null, null, `/${idioma}/wm/secciones/articulo/`)// Actualiza URL
     document.getElementById('tituloUrlOriginal').value = ''
     document.getElementById('copete').value = ''
     document.getElementById('titulo').value = ''
     document.getElementById('tituloUrl').value = ''
-    ckEditores['entradilla'].setData('')
-    ckEditores['texto'].setData('')
+    ckEditores.entradilla.setData('')
+    ckEditores.texto.setData('')
     document.getElementById('secciones').disabled = false
     document.getElementById('secciones').value = ''
     multiSelect.reiniciar(document.getElementById('categorias'))
@@ -285,19 +283,19 @@ function hacer () {
       return
     }
     // Título para el selector de imagen
-    let titulo = document.querySelector('.imgPrincipal label').textContent
+    const titulo = document.querySelector('.imgPrincipal label').textContent
     // Obtiene del URL nombre base del artículo y del blog o sección
-    let partes = document.location.pathname.split('/')
-    if (partes[ partes.length - 1 ] === '') {
+    const partes = document.location.pathname.split('/')
+    if (partes[partes.length - 1] === '') {
       partes.pop() // Si la URL temina en barra el último elemento del array estará vacío. Se descarta.
     }
     if (partes.length === 6 || partes.length === 7) { // URL sin y con idioma
-      let artiBase = partes[ partes.length - 1 ]
-      let blogBase = partes[ partes.length - 2 ]
-      let url = `${urlApi}${blogBase}/articulos/${artiBase}/imagenes`
+      const artiBase = partes[partes.length - 1]
+      const blogBase = partes[partes.length - 2]
+      const url = `${urlApi}${blogBase}/articulos/${artiBase}/imagenes`
       // Muestra selector de imagen
-      let selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
-      selecImagen.mostrar().then(([ urlImg, estado ]) => {
+      const selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
+      selecImagen.mostrar().then(([urlImg, estado]) => {
         if (estado === 'existente' || estado === 'nueva') {
           // Muestra imagen principal
           document.querySelector('.imgPrincipal .foto').src = urlImg
@@ -316,20 +314,20 @@ function hacer () {
           let nomImgABorrar = divImagen.querySelector('img').src.split('/').pop()
           nomImgABorrar = nomImgABorrar.substr(0, nomImgABorrar.length - 8) + nomImgABorrar.substr(-4)
           // Convierte en DOM el contenido del editor
-          let template = document.createElement('template')
-          let textoHtml = ckEditores['texto'].getData()
+          const template = document.createElement('template')
+          let textoHtml = ckEditores.texto.getData()
           textoHtml = textoHtml.trim()
           template.innerHTML = textoHtml
           // Verifica imágenes en el editor
-          let imgs = template.content.querySelectorAll('img')
-          for (let img of imgs) {
+          const imgs = template.content.querySelectorAll('img')
+          for (const img of imgs) {
             if (img.src.split('/').pop() === nomImgABorrar) {
               imgEnUso = true
               break
             }
           }
           // Verifica imagen principal del artículo
-          let nomImgPrincipal = document.getElementById('urlImgPrincipal').value.split('/').pop()
+          const nomImgPrincipal = document.getElementById('urlImgPrincipal').value.split('/').pop()
           if (!imgEnUso && nomImgABorrar === nomImgPrincipal) {
             imgEnUso = true
           }
@@ -360,7 +358,7 @@ function hacer () {
   function guardarArticulo () {
     comun.esperaAjax(true, 'guardarArti')
     // Verifica selección de blog
-    let blogBase = document.getElementById('secciones').value
+    const blogBase = document.getElementById('secciones').value
     if (blogBase === '') {
       tostada(document.querySelector('.faltaSeccion').textContent, 4, 'color-tres')
       scrollIt(document.getElementsByTagName('body')[0], 300, 'easeOutQuad')
@@ -369,7 +367,7 @@ function hacer () {
       return
     }
     // Recoge datos del formulario
-    let arti = recogerDatos()
+    const arti = recogerDatos()
     // Verifica título
     if (arti.titulo === '') {
       tostada(document.querySelector('.faltaTitulo').textContent, 4, 'color-tres')
@@ -380,9 +378,9 @@ function hacer () {
     }
     dataOriginal = arti // Guarda para verificar si se modificaron datos al abandonar la página
     // Método
-    let metodo = document.getElementById('tituloUrlOriginal').value === '' ? 'post' : 'put'
+    const metodo = document.getElementById('tituloUrlOriginal').value === '' ? 'post' : 'put'
     //
-    let url = urlApi + blogBase + '/articulos/' + document.getElementById('tituloUrlOriginal').value
+    const url = urlApi + blogBase + '/articulos/' + document.getElementById('tituloUrlOriginal').value
     window.fetch(url, { method: metodo, headers: reqHeaders, body: JSON.stringify(arti) })
       .then(respuesta => respuesta.json())
       .then(resArti => {
@@ -395,8 +393,8 @@ function hacer () {
         }
         limpiarEditor()
         // Muestra artículo actualizado
-        let partes = resArti.url.split('/')
-        let artiBase = partes[ partes.length - 1 ]
+        const partes = resArti.url.split('/')
+        const artiBase = partes[partes.length - 1]
         mostrarArticulo(blogBase, artiBase)
         comun.esperaAjax(false, 'guardarArti')
         tostada(document.querySelector('.okGuardado').textContent, 4, 'color-dos')
@@ -417,7 +415,7 @@ function hacer () {
   document.querySelector('#confirmaBorrar .confirmar').addEventListener('click', () => {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borrarArti')
-    let url = urlApi + document.getElementById('secciones').value + '/articulos/' + document.getElementById('tituloUrlOriginal').value
+    const url = urlApi + document.getElementById('secciones').value + '/articulos/' + document.getElementById('tituloUrlOriginal').value
     window.fetch(url, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()
@@ -442,9 +440,9 @@ function hacer () {
 
   //
   window.onbeforeunload = evento => {
-    let dataActual = recogerDatos()
+    const dataActual = recogerDatos()
     if (JSON.stringify(dataActual) !== JSON.stringify(dataOriginal)) {
-      let mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
+      const mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
       evento.returnValue = mensaje // Gecko, Trident, Chrome 34+
       return mensaje // Gecko, WebKit, Chrome <34
     }

@@ -28,20 +28,18 @@ import tostada from './widgets/tostada'
 import * as wmCkEditor from './modulos/ckeditor'
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer()
   } else {
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   }
 })
   .catch(error => {
     console.error(error)
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   })
 
 //
@@ -61,7 +59,7 @@ function hacer () {
       dataOriginal = recogerDatos()
     }).catch(error => { console.error(error) })
 
-  let listaAutores = new ListaSelect(document.getElementById('listaAutores'), mostrarAutor)
+  const listaAutores = new ListaSelect(document.getElementById('listaAutores'), mostrarAutor)
   listaAutores.antesDeCambiar = () => {
     // Evento para retener la selección de un item y verificar si hay que guardar
     return new Promise((resolve, reject) => {
@@ -76,8 +74,8 @@ function hacer () {
   }
   checkbox.iniciar()// Checkboxes personalizados
 
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
 
   // Obtiene autores
   comun.esperaAjax(true, 'autores')
@@ -155,7 +153,7 @@ function hacer () {
   //
   function mostrarAutor (claveValor) {
     comun.esperaAjax(true, 'obtieneAutor')
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/${claveValor.clave}`
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/${claveValor.clave}`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(autor => {
@@ -186,7 +184,7 @@ function hacer () {
   document.getElementById('buscarUsuario').addEventListener('click', buscarUsuario)
 
   function buscarUsuario () {
-    let email = document.getElementById('emailNuevoAutor').value
+    const email = document.getElementById('emailNuevoAutor').value
     if (email !== '') {
       comun.esperaAjax(true, 'buscaUsuario')
       window.fetch(`${comun.getUrlBaseApi()}/apis/usuarios/v1/?email=${email}`, { method: 'get', headers: reqHeaders })
@@ -214,7 +212,7 @@ function hacer () {
 
   // Recoger datos del formulario para enviar
   function recogerDatos () {
-    let autorActivo = document.getElementById('activo').checked ? 1 : 0
+    const autorActivo = document.getElementById('activo').checked ? 1 : 0
     return {
       uid: document.getElementById('uid').value,
       nombreAutor: document.getElementById('seudonimo').value,
@@ -228,8 +226,8 @@ function hacer () {
   // Guarda autor
   document.getElementById('guardar').addEventListener('click', () => {
     comun.esperaAjax(true, 'guardaAutor')
-    let metodo = document.getElementById('guardarNuevo').value === '1' ? 'post' : 'put'
-    let autor = recogerDatos()
+    const metodo = document.getElementById('guardarNuevo').value === '1' ? 'post' : 'put'
+    const autor = recogerDatos()
     dataOriginal = autor // Guarda para verificar si se modificaron datos al abandonar la página
     let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/`
     url = metodo === 'put' ? url + document.getElementById('uid').value : url
@@ -262,7 +260,7 @@ function hacer () {
   document.querySelector('#confirmaBorrar .confirmar').addEventListener('click', () => {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraAutor')
-    let uid = document.getElementById('uid').value
+    const uid = document.getElementById('uid').value
     window.fetch(`${comun.getUrlBaseApi()}/apis/wm-articulus/v1/autores/${uid}`, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()
@@ -285,9 +283,9 @@ function hacer () {
 
   //
   window.onbeforeunload = evento => {
-    let dataActual = recogerDatos()
+    const dataActual = recogerDatos()
     if (JSON.stringify(dataActual) !== JSON.stringify(dataOriginal)) {
-      let mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
+      const mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
       evento.returnValue = mensaje // Gecko, Trident, Chrome 34+
       return mensaje // Gecko, WebKit, Chrome <34
     }

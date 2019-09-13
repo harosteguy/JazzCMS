@@ -29,20 +29,18 @@ import * as wmCkEditor from './modulos/ckeditor'
 import SelectorImagen from './widgets/selector-imagen'
 //
 comun.registrarServiceWorker().catch(error => { console.error(error.message) })
-comun.setIdiomaPagina()
-let idioma = comun.obtenerIdiomaUrl()
-let idiomaUrl = idioma === comun.setIdiomas[0] ? '' : idioma + '/'
+const idioma = comun.setIdiomaPagina()
 
 comun.mostrarUsuario().then(usr => {
   if (usr.esAdmin === 1) {
     hacer()
   } else {
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   }
 })
   .catch(error => {
     console.error(error)
-    window.location.href = `/${idiomaUrl}`
+    window.location.href = `/${idioma}/`
   })
 
 //
@@ -62,7 +60,7 @@ function hacer () {
       dataOriginal = recogerDatos()
     }).catch(error => { console.error(error) })
 
-  let listaCategorias = new ListaSelect(document.getElementById('listaCategorias'), mostrarCategoria)
+  const listaCategorias = new ListaSelect(document.getElementById('listaCategorias'), mostrarCategoria)
   listaCategorias.antesDeCambiar = () => {
     // Evento para retener la selección de un item y verificar si hay que guardar
     return new Promise((resolve, reject) => {
@@ -76,8 +74,8 @@ function hacer () {
     })
   }
 
-  let headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
-  let reqHeaders = { 'Authorization': headerAuth, 'Accept-Language': idioma }
+  const headerAuth = 'Basic ' + window.btoa(window.sessionStorage.getItem('uid') + ':' + window.sessionStorage.getItem('token'))
+  const reqHeaders = { Authorization: headerAuth, 'Accept-Language': idioma }
 
   // Obtiene secciones
   comun.esperaAjax(true, 'secciones')
@@ -172,7 +170,7 @@ function hacer () {
   //
   function mostrarCategoria (claveValor) {
     comun.esperaAjax(true, 'obtieneCat')
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${claveValor.clave}/?incNumArticulos=1`
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${claveValor.clave}/?incNumArticulos=1`
     window.fetch(url, { method: 'get', headers: reqHeaders })
       .then(respuesta => respuesta.json())
       .then(cat => {
@@ -211,11 +209,11 @@ function hacer () {
       return
     }
     // Título para el selector de imagen
-    let titulo = document.querySelector('.imgPrincipal label').textContent
+    const titulo = document.querySelector('.imgPrincipal label').textContent
     // Muestra selector de imagen
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
-    let selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
-    selecImagen.mostrar().then(([ urlImg, estado ]) => {
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${document.getElementById('nombreBase').value}/imagenes`
+    const selecImagen = new SelectorImagen(titulo, url, false) // El tercer parámetro es para no pedir confirmación al borrar una imagen
+    selecImagen.mostrar().then(([urlImg, estado]) => {
       if (estado === 'existente' || estado === 'nueva') {
         // Muestra imagen principal
         document.querySelector('.imgPrincipal .foto').src = urlImg
@@ -234,20 +232,20 @@ function hacer () {
         let nomImgABorrar = divImagen.querySelector('img').src.split('/').pop()
         nomImgABorrar = nomImgABorrar.substr(0, nomImgABorrar.length - 8) + nomImgABorrar.substr(-4)
         // Convierte en DOM el contenido del editor
-        let template = document.createElement('template')
+        const template = document.createElement('template')
         let textoHtml = ckDescripcion.getData()
         textoHtml = textoHtml.trim()
         template.innerHTML = textoHtml
         // Verifica imágenes en el editor
-        let imgs = template.content.querySelectorAll('img')
-        for (let img of imgs) {
+        const imgs = template.content.querySelectorAll('img')
+        for (const img of imgs) {
           if (img.src.split('/').pop() === nomImgABorrar) {
             imgEnUso = true
             break
           }
         }
         // Verifica imagen principal del artículo
-        let nomImgPrincipal = document.getElementById('urlImgPrincipal').value.split('/').pop()
+        const nomImgPrincipal = document.getElementById('urlImgPrincipal').value.split('/').pop()
         if (!imgEnUso && nomImgABorrar === nomImgPrincipal) {
           imgEnUso = true
         }
@@ -279,7 +277,7 @@ function hacer () {
   document.getElementById('guardar').addEventListener('click', () => {
     comun.esperaAjax(true, 'guardaCat')
     // Verifica selección de seccion
-    let seccionBase = document.getElementById('secciones').value
+    const seccionBase = document.getElementById('secciones').value
     if (seccionBase === '') {
       tostada(document.querySelector('.faltaSeccion').textContent, 4, 'color-tres')
       scrollIt(document.getElementsByTagName('body')[0], 300, 'easeOutQuad')
@@ -288,11 +286,11 @@ function hacer () {
       return
     }
     //
-    let nombreBase = document.getElementById('nombreBase').value
-    let metodo = (nombreBase === '') ? 'post' : 'put'
+    const nombreBase = document.getElementById('nombreBase').value
+    const metodo = (nombreBase === '') ? 'post' : 'put'
     let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/`
     url += metodo === 'put' ? nombreBase : ''
-    let cat = recogerDatos()
+    const cat = recogerDatos()
     dataOriginal = cat // Guarda para verificar si se modificaron datos al abandonar la página
     window.fetch(url, { method: metodo, headers: reqHeaders, body: JSON.stringify(cat) })
       .then(respuesta => respuesta.json())
@@ -333,8 +331,8 @@ function hacer () {
   document.querySelector('#confirmaBorrar .confirmar').addEventListener('click', () => {
     emergente.ocultar(document.getElementById('confirmaBorrar'))
     comun.esperaAjax(true, 'borraCat')
-    let nombreBase = document.getElementById('nombreBase').value
-    let url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${nombreBase}`
+    const nombreBase = document.getElementById('nombreBase').value
+    const url = `${comun.getUrlBaseApi()}/apis/wm-articulus/v1/blogs/${document.getElementById('secciones').value}/categorias/${nombreBase}`
     window.fetch(url, { method: 'delete', headers: reqHeaders })
       .then(respuesta => {
         if (respuesta.status !== 200 && respuesta.status !== 204) return respuesta.json()
@@ -357,9 +355,9 @@ function hacer () {
 
   //
   window.onbeforeunload = evento => {
-    let dataActual = recogerDatos()
+    const dataActual = recogerDatos()
     if (JSON.stringify(dataActual) !== JSON.stringify(dataOriginal)) {
-      let mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
+      const mensaje = 'Es posible que los cambios implementados no se puedan guardar.'
       evento.returnValue = mensaje // Gecko, Trident, Chrome 34+
       return mensaje // Gecko, WebKit, Chrome <34
     }
