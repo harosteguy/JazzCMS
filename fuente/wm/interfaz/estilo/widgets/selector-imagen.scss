@@ -57,15 +57,20 @@
     .agregar {
       display: inline-block;
       position: relative;
-      vertical-align: middle;
       width: 160px;
       height: 90px;
       margin: 5px;
-      padding-top: 28px;
       background: #eee;
       font-size: 28px;
       text-align: center;
       cursor: pointer;
+      .ico.mas,
+      .ico.gira {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        @include translate(-50%, -50%);
+      }
       .inputImagen {
         cursor: pointer;
         outline: none;
@@ -84,8 +89,12 @@
       width: 160px;
       height: 90px;
       margin: 5px;
+      overflow: hidden;
       cursor: pointer;
       img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         border-radius: $boton-radius;
       }
