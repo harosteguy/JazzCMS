@@ -188,7 +188,7 @@ function hacer () {
         dispararEvento(document.getElementById('publicado'), 'change') // Actualiza estado del checkbox
         // Imagen principal
         if (arti.imgPrincipal !== '') {
-          document.querySelector('.imgPrincipal .foto').src = arti.imgPrincipal
+          document.querySelector('.imgPrincipal .foto').src = arti.imgPrincipal + '?nn=' + Math.floor(Math.random() * 1000) // Evita cacheo de imagen usando URl query
           document.getElementById('urlImgPrincipal').value = arti.imgPrincipal
           document.querySelector('.imgPrincipal .quitar').classList.remove('oculto')
         }
@@ -298,7 +298,7 @@ function hacer () {
       selecImagen.mostrar().then(([urlImg, estado]) => {
         if (estado === 'existente' || estado === 'nueva') {
           // Muestra imagen principal
-          document.querySelector('.imgPrincipal .foto').src = urlImg
+          document.querySelector('.imgPrincipal .foto').src = urlImg + '?nn=' + Math.floor(Math.random() * 1000) // Evita cacheo de imagen usando URl query
           document.querySelector('.imgPrincipal .quitar').classList.remove('oculto')
           document.getElementById('urlImgPrincipal').value = urlImg
         }
